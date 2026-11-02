@@ -1,0 +1,47 @@
+commit d3a6e834b5a3b22922230d52f7d58d9f7c8783c9
+Author: neelafarz
+Date:   2026-11-01 22:49:34 -0600
+
+Add transcript of ideation and pitch session
+
+Co-Authored-By: Claude Sonnet 5.5 <noreply@anthropic.com>
+
+----------------------------------------
+commit 52da011297299dafb9c7836114e938c09026274c
+Author: neelafarz
+Date:   2026-11-01 22:47:08 -0600
+
+Add first logo rendition
+
+Lilac (#C8A2C8) logo with white tooth icon made in Canva. Credit and
+usage-terms note are in research.md.
+
+Co-Authored-By: Claude Sonnet 5.5 <noreply@anthropic.com>
+
+----------------------------------------
+commit b40ad790bede1ede201165707d763e85ca7f38b1
+Author: neelafarz
+Date:   2026-11-01 22:47:08 -0600
+
+Add Going Chairside pitch draft
+
+Pitch with ideation (ideas explored, choice of the dental procedure study
+game), trimmed pitch section, and risks. Full pre-trim draft saved in
+reference/. Logo credit and Canva terms note added to research.md.
+
+Co-Authored-By: Claude Sonnet 5.5 <noreply@anthropic.com>
+
+----------------------------------------
+commit 33986e2a80414f49fe14c2a735ab8bd0c1da0aa7
+Author: neelafarz
+Date:   2026-11-01 15:26:23 -0600
+
+Add original Project 5 template files
+
+Template documents (brief, plan, research, spec, AGENTS) and empty
+breakdown, reference and transcripts folders, before any project work.
+pitch.md is not included here because it was edited before the first commit.
+
+Co-Authored-By: Claude Sonnet 5.5 <noreply@anthropic.com>
+
+----------------------------------------
