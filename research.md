@@ -31,3 +31,5 @@ Record consequential changes to the approved scope: what changed, why, and what 
 ## Sources and credits
 
 List every external source, code library, asset, and dataset you use, with its link, license or usage terms, and required credit.
+
+- **First logo rendition** (`assets/first-logo-rendition.png`): made in Canva by the Developer. The tooth icon came from Canva. Canva's help pages say elements from its content library cannot be used in a trademark, except fonts, simple shapes, and lines. Not yet checked whether this icon is a library element or a simple shape. The logo is a working draft, and the project is not seeking a trademark. Source: [Canva logos and trademarks](https://www.canva.com/en_in/help/logo-trademarks/).
