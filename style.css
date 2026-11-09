@@ -81,25 +81,37 @@ header h2 { margin: 0; }
 .scene-art { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; }
 .scene-label { position: absolute; right: 0; top: 0; margin: 0; font-size: 0.7rem; opacity: 0.6; }
 
+/* The tray: a rimmed, textured surface with the tools lying on it, no captions. */
 [data-slot="tray"] {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 8px;
-  padding: 10px;
-  border-radius: 16px;
-  background: var(--tray);
+  gap: 4px;
+  padding: 14px 10px;
+  border-radius: 22px;
+  border: 5px solid #58c3cb;
+  background:
+    repeating-linear-gradient(115deg, rgba(255, 255, 255, 0.16) 0 2px, transparent 2px 9px),
+    linear-gradient(145deg, #b9f5f8, #6fd6dd);
+  box-shadow:
+    inset 0 0 0 3px rgba(255, 255, 255, 0.4),
+    inset 0 8px 16px rgba(0, 70, 80, 0.28),
+    0 8px 18px rgba(0, 0, 0, 0.4);
 }
 .tool {
-  display: flex; flex-direction: column; align-items: center; gap: 4px;
-  padding: 6px; min-height: 84px;
-  border: 2px solid transparent; border-radius: 10px;
-  background: rgba(255, 255, 255, 0.45);
-  color: #1c2a33; font-size: 0.65rem;
+  display: flex; align-items: center; justify-content: center;
+  height: 112px; padding: 4px;
+  border: 0; border-radius: 12px; background: none;
+  color: #1c2a33; font-size: 0.65rem; text-align: center;
 }
-.tool img { width: 100%; height: 48px; object-fit: contain; }
-.tool:disabled { opacity: 0.6; }
-.tool.hint { border-color: var(--accent); background: #fff; }
-.tool.wrong { animation: shake 0.3s; border-color: var(--wrong); }
+.tool img {
+  width: 100%; height: 100%; object-fit: contain;
+  filter: drop-shadow(2px 5px 3px rgba(0, 60, 70, 0.4)); /* the tool rests on the tray */
+}
+.tool:active:not(:disabled) img { transform: scale(0.95); }
+.tool:disabled { opacity: 0.8; }
+.tool.hint img { filter: drop-shadow(0 0 5px #fff) drop-shadow(0 0 9px var(--accent)); }
+.tool.wrong { animation: shake 0.3s; }
+.tool.wrong img { filter: drop-shadow(0 0 6px var(--wrong)); }
 @keyframes shake { 25% { transform: translateX(-5px); } 75% { transform: translateX(5px); } }
 
 [data-slot="popup"], [data-slot="pause"] {
@@ -112,7 +124,7 @@ header h2 { margin: 0; }
   inset: 0; max-width: none; border-radius: 0; background: rgba(20, 26, 31, 0.95); color: var(--text);
   display: flex; flex-direction: column; justify-content: center; gap: 12px; padding: 32px;
 }
-.flying { position: fixed; z-index: 10; pointer-events: none; }
+.flying { position: fixed; z-index: 10; pointer-events: none; height: auto; }
 
 /* ---- Sort (hooks used by js/sortView.js) ---- */
 [data-screen="sort"] header { justify-content: space-between; }

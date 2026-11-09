@@ -50,9 +50,13 @@ export class ProcedureView {
       const img = document.createElement('img');
       img.src = tool.image;
       img.alt = '';
-      img.onerror = () => img.remove(); // placeholder art: the label still shows
+      // A real tray has no captions. The label is spoken by screen readers (aria-label) and
+      // only shown as a stand-in when a tool's image is missing.
       const label = document.createElement('span');
+      label.className = 'tool-label';
       label.textContent = tool.label;
+      label.hidden = true;
+      img.onerror = () => { img.remove(); label.hidden = false; };
       button.append(img, label);
       button.addEventListener('click', () => this.#onTap(tool.id));
       tray.append(button);
