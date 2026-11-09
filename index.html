@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Going Chairside</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!--
+    SCREENS, laid out from the Developer's frames. Each <section data-screen="..."> is one
+    screen; app.js shows one at a time. Restyle freely, but keep the data-* hooks:
+      data-goto="<screen>"   a button that opens that screen
+      data-action="..."      begin-game | again | back | pause | resume
+      data-text="..."        filled from data/app.json (title, tagline, disclaimer)
+      data-slot="..."        filled by the app (modes, guide, overall, score, stars, best, detail,
+                             mode-title, instructions, intro-note, end-note) or by an engine view:
+                             game: scene, hand, message, tray, timer, popup, pause
+                             sort: banner, message, count, item, bins, timer, pause
+  -->
+  <main id="app">
+
+    <!-- Frame 1: opening screen -->
+    <section data-screen="opening">
+      <img class="logo" src="assets/first-logo-rendition.png" alt="Going Chairside">
+      <button data-goto="selection">Begin</button>
+      <button data-goto="procedures">Procedures</button>
+      <button data-goto="settings">Settings</button>
+      <p class="disclaimer" data-text="disclaimer"></p>
+    </section>
+
+    <!-- Frame 2: selection screen -->
+    <section data-screen="selection" hidden>
+      <header>
+        <button data-goto="opening" aria-label="Home">&#8962;</button>
+        <p class="overall">Overall Accuracy: <strong data-slot="overall">--</strong></p>
+      </header>
+      <p class="disclaimer-box" data-text="disclaimer"></p>
+      <div data-slot="modes"></div>
+    </section>
+
+    <!-- Provisional: steps guide for the Procedures button (not in the frames) -->
+    <section data-screen="procedures" hidden>
+      <header>
+        <button data-goto="opening" aria-label="Back">&larr;</button>
+        <h2>Procedures</h2>
+      </header>
+      <div data-slot="guide"></div>
+    </section>
+
+    <!-- Provisional: Settings has no content decided yet -->
+    <section data-screen="settings" hidden>
+      <header>
+        <button data-goto="opening" aria-label="Back">&larr;</button>
+        <h2>Settings</h2>
+      </header>
+      <p>Coming soon.</p>
+    </section>
+
+    <!-- Approved in spec: the disclaimer before every game (not drawn in the frames) -->
+    <section data-screen="intro" hidden>
+      <header>
+        <button data-goto="selection" aria-label="Back to selection">&larr;</button>
+        <h2 data-slot="mode-title"></h2>
+      </header>
+      <p class="disclaimer-box" data-text="disclaimer"></p>
+      <p data-slot="instructions"></p>
+      <p class="note" data-slot="intro-note"></p>
+      <button data-action="begin-game">Start</button>
+    </section>
+
+    <!-- Frame 3: game screen -->
+    <section data-screen="game" hidden>
+      <header>
+        <button data-action="back" aria-label="Back to selection">&larr;</button>
+        <p data-slot="timer"></p>
+        <button data-action="pause" aria-label="Pause">&#10074;&#10074;</button>
+      </header>
+      <p class="hint-box" data-slot="message" aria-live="polite"></p>
+      <div data-slot="scene">
+        <div class="mouth"></div>
+        <div class="hand" data-slot="hand"></div>
+        <img class="scene-art" alt="">
+        <p class="scene-label"></p>
+      </div>
+      <div data-slot="tray"></div>
+      <div data-slot="popup" hidden>
+        <p></p>
+        <button>Got it</button>
+      </div>
+      <div data-slot="pause" hidden>
+        <h2>Paused</h2>
+        <button data-action="resume">Resume</button>
+        <button data-action="back">Quit</button>
+      </div>
+    </section>
+
+    <!-- Frame 5: sterilization sort screen -->
+    <section data-screen="sort" hidden>
+      <header>
+        <button data-action="back" aria-label="Back to selection">&larr;</button>
+        <p data-slot="timer"></p>
+        <button data-action="pause" aria-label="Pause">&#10074;&#10074;</button>
+      </header>
+      <p class="hint-box" data-slot="banner"></p>
+      <p class="hint-box" data-slot="message" aria-live="polite"></p>
+      <p class="count" data-slot="count"></p>
+      <div class="item" data-slot="item"></div>
+      <div data-slot="bins"></div>
+      <div data-slot="pause" hidden>
+        <h2>Paused</h2>
+        <button data-action="resume">Resume</button>
+        <button data-action="back">Quit</button>
+      </div>
+    </section>
+
+    <!-- Frame 4: end screen -->
+    <section data-screen="end" hidden>
+      <div class="stars" data-slot="stars" aria-hidden="true"></div>
+      <p class="big"><span data-slot="score"></span>%</p>
+      <p>Accuracy</p>
+      <p data-slot="detail"></p>
+      <p>Best: <span data-slot="best"></span>%</p>
+      <p class="note" data-slot="end-note"></p>
+      <button data-action="again">Play Again</button>
+      <button data-goto="selection">New Game</button>
+      <button data-goto="opening">Home</button>
+    </section>
+
+  </main>
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>

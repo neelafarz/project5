@@ -1,0 +1,49 @@
+{
+  "title": "Going Chairside",
+  "tagline": "a dental procedure study aid",
+  "disclaimer": "This game is a simplified study aid. Tools, materials, and procedure steps vary by dentist, office, and patient needs. It is not a substitute for clinical training or office protocols.",
+  "modes": [
+    {
+      "id": "composite-filling",
+      "title": "Filling",
+      "engine": "procedure",
+      "data": "data/composite-filling.json",
+      "built": true
+    },
+    {
+      "id": "crown-prep",
+      "title": "Crown Prep",
+      "engine": "procedure",
+      "data": null,
+      "built": false
+    },
+    {
+      "id": "crown-seat",
+      "title": "Crown Seat",
+      "engine": "procedure",
+      "data": null,
+      "built": false
+    },
+    {
+      "id": "root-canal",
+      "title": "Root Canal",
+      "engine": "procedure",
+      "data": null,
+      "built": false
+    },
+    {
+      "id": "extraction",
+      "title": "Extraction",
+      "engine": "procedure",
+      "data": null,
+      "built": false
+    },
+    {
+      "id": "sterilization-sort",
+      "title": "Sterilization",
+      "engine": "sort",
+      "data": "data/sterilization.json",
+      "built": true
+    }
+  ]
+}

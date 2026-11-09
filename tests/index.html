@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Tests</title></head>
+<body>
+  <!-- Open via a local server (python3 -m http.server) and read the page, or run headless (see AGENTS.md). -->
+  <pre id="out">running...</pre>
+  <script type="module">
+    import { stepPoints, finalScore } from '../js/score.js';
+    import { ProcedureRun, FLY_MS, BEAT_MS, HINT_MS } from '../js/procedureRun.js';
+    import { SortRun, HINT_AT_MS, MOVE_MS, FEEDBACK_MS } from '../js/sortRun.js';
+
+    const results = [];
+    const test = (name, fn) => {
+      try { fn(); results.push(`PASS ${name}`); }
+      catch (e) { results.push(`FAIL ${name}: ${e.message}`); }
+    };
+    const eq = (actual, expected) => {
+      if (actual !== expected) throw new Error(`expected ${expected}, got ${actual}`);
+    };
+
+    const data = await (await fetch('../data/composite-filling.json')).json();
+    const sort = await (await fetch('../data/sterilization.json')).json();
+    const timedSteps = data.steps.filter((s) => s.pick).length;
+
+    // Plays a whole run. `pickAt(step)` gives the ms after the step began to tap, or null to time out.
+    function playRun(pickAt) {
+      const run = new ProcedureRun(data);
+      let t = 0;
+      run.start(t);
+      while (run.phase !== 'done') {
+        if (run.phase === 'pick') {
+          const delay = pickAt(run.step);
+          if (delay === null) { t = run.clock.startedAt + 10000; run.tick(t); }
+          else { t = run.clock.startedAt + delay; run.tap(run.step.pick, t); }
+        } else {
+          run.dismissPopup();
+          t = run.readyAt;
+          if (!run.next(t)) throw new Error('could not advance');
+        }
+      }
+      return run;
+    }
+
+    // ---- Scoring (score.js) ----
+    test('full points at 0 s and at exactly 2 s', () => { eq(stepPoints(0), 10); eq(stepPoints(2000), 10); });
+    test('whole seconds left after the 2 s window', () => {
+      eq(stepPoints(2001), 7); eq(stepPoints(3500), 6); eq(stepPoints(5000), 5); eq(stepPoints(9000), 1);
+    });
+    test('zero at the timeout', () => { eq(stepPoints(9999), 0); eq(stepPoints(10000), 0); });
+    test('pitch test list [9,10,5,10,3,6,7,8,10,6] totals 74', () => {
+      eq(finalScore([9, 10, 5, 10, 3, 6, 7, 8, 10, 6]), 74);
+    });
+    test('score is out of 100 whatever the step count', () => {
+      eq(finalScore([10, 10, 10]), 100); eq(finalScore(new Array(12).fill(10)), 100);
+      eq(finalScore([5, 5]), 50); eq(finalScore([]), 0);
+    });
+
+    // ---- Procedure engine (procedureRun.js) with composite-filling.json ----
+    test('data has 12 timed steps', () => eq(timedSteps, 12));
+    test('perfect run (every pick at 0.5 s) scores 100', () => {
+      const run = playRun(() => 500);
+      eq(run.score(), 100); eq(run.points.length, 12);
+    });
+    test('timing out every step scores 0', () => eq(playRun(() => null).score(), 0));
+    test('one timeout among perfect picks scores 92', () => {
+      let first = true;
+      const run = playRun(() => (first ? ((first = false), null) : 500));
+      eq(run.score(), 92); eq(run.points[0], 0);
+    });
+    test('a wrong pick costs nothing, then a correct pick scores by its time', () => {
+      const run = new ProcedureRun(data);
+      run.start(0);
+      const wrong = run.step.pick === 'floss' ? 'etchant' : 'floss';
+      eq(run.tap(wrong, 1000).correct, false);
+      eq(run.phase, 'pick');
+      eq(run.tap(run.step.pick, 4500).points, 5);
+    });
+    test('taps are ignored while a result is playing', () => {
+      const run = new ProcedureRun(data);
+      run.start(0);
+      run.tap(run.step.pick, 100);
+      eq(run.tap(run.step.pick, 200).ignored, true);
+      eq(run.points.length, 1);
+    });
+    test('a timeout hints, then hands over after HINT_MS', () => {
+      const run = new ProcedureRun(data);
+      run.start(0);
+      eq(run.tick(9999), null);
+      eq(run.tick(10000), 'timeout');
+      eq(run.flyStartsAt, 10000 + HINT_MS);
+    });
+    test('the cure wait cannot be skipped', () => {
+      const run = new ProcedureRun(data);
+      run.start(0);
+      let t = 0;
+      while (run.step.id !== 'cure-bond') {
+        run.tap(run.step.pick, t + 100);
+        run.dismissPopup();
+        t = run.readyAt; run.next(t);
+      }
+      const tappedAt = t + 100;
+      run.tap('curing-light', tappedAt);
+      const waitEnds = tappedAt + FLY_MS + 3000;
+      eq(run.canAdvance(waitEnds - 1), false);
+      eq(run.next(waitEnds - 1), false);
+      eq(run.canAdvance(waitEnds), true);
+    });
+    test('the matrix popup blocks advancing until dismissed', () => {
+      const run = new ProcedureRun(data);
+      run.start(0);
+      run.tap(run.step.pick, 100);
+      eq(run.canAdvance(run.readyAt + 5000), false);
+      run.dismissPopup();
+      eq(run.canAdvance(run.readyAt), true);
+    });
+    test('pause freezes the clock and a paused step cannot time out or be tapped', () => {
+      const run = new ProcedureRun(data);
+      run.start(0);
+      eq(run.pause(3000), true);
+      eq(run.remainingMs(9000), 7000);
+      eq(run.tick(20000), null);
+      eq(run.tap(run.step.pick, 20000).ignored, true);
+      run.resume(20000);
+      eq(run.remainingMs(20000), 7000);
+      // 3 s used before the pause + 4.5 s after it = 7.5 s elapsed, so 2 whole seconds left
+      eq(run.tap(run.step.pick, 24500).points, 2);
+    });
+    test('pausing is only allowed during a timed pick', () => {
+      const run = new ProcedureRun(data);
+      run.start(0);
+      run.tap(run.step.pick, 100);
+      eq(run.pause(200), false);
+    });
+    test('steps with no pick play on their own and are not scored', () => {
+      const run = playRun(() => 500);
+      eq(run.points.length, timedSteps);
+      eq(data.steps.filter((s) => !s.pick).length, 2);
+    });
+
+    // ---- Sort engine (sortRun.js) with sterilization.json ----
+    const noShuffle = () => 0.999; // keeps each item in place, so the order is the data order
+    // Plays a whole round. `answerAt(item)` gives { bin, ms } to tap, or null to time out.
+    function playSort(answerAt, random = noShuffle) {
+      const run = new SortRun(sort, random);
+      let t = 0;
+      run.start(t);
+      while (run.phase !== 'done') {
+        const answer = answerAt(run.item);
+        if (answer === null) { t = run.clock.startedAt + 10000; run.tick(t); }
+        else { t = run.clock.startedAt + answer.ms; run.tap(answer.bin, t); }
+        t = run.readyAt;
+        if (!run.next(t)) throw new Error('could not advance');
+      }
+      return run;
+    }
+    const right = (item) => ({ bin: item.bin, ms: 500 });
+    const other = (item) => sort.bins.find((b) => b.id !== item.bin).id;
+
+    test('sort data: 2 bins, 6 ultrasonic and 4 heat items, each item has a valid bin', () => {
+      eq(sort.bins.length, 2); eq(sort.items.length, 10);
+      eq(sort.items.filter((i) => i.bin === 'ultrasonic').length, 6);
+      eq(sort.items.filter((i) => i.bin === 'heat').length, 4);
+      eq(sort.items.every((i) => sort.bins.some((b) => b.id === i.bin)), true);
+    });
+    test('sort: every item appears exactly once, even when shuffled', () => {
+      const run = new SortRun(sort);
+      run.start(0);
+      eq(new Set(run.order.map((i) => i.id)).size, 10);
+      eq(run.total, 10);
+    });
+    test('sort: all correct and fast scores 100 with 10/10', () => {
+      const run = playSort(right);
+      eq(run.score(), 100); eq(run.correctCount, 10);
+    });
+    test('sort: a wrong pick scores 0 for that item and is final', () => {
+      const run = new SortRun(sort, noShuffle);
+      run.start(0);
+      const result = run.tap(other(run.item), 500);
+      eq(result.correct, false); eq(run.points[0], 0); eq(run.correctCount, 0);
+      eq(run.tap(run.item.bin, 600).ignored, true); // cannot pick again
+      eq(run.points.length, 1);
+    });
+    test('sort: 9 right and 1 wrong scores 90 and counts 9/10', () => {
+      let first = true;
+      const run = playSort((item) => (first ? ((first = false), { bin: other(item), ms: 500 }) : right(item)));
+      eq(run.score(), 90); eq(run.correctCount, 9);
+    });
+    test('sort: the hint comes once at 5 s, not before', () => {
+      const run = new SortRun(sort, noShuffle);
+      run.start(0);
+      eq(run.tick(HINT_AT_MS - 1), null);
+      eq(run.tick(HINT_AT_MS), 'hint');
+      eq(run.tick(HINT_AT_MS + 100), null);
+    });
+    test('sort: at 10 s the game sorts the item for the player: 0 points, not counted correct', () => {
+      const run = new SortRun(sort, noShuffle);
+      run.start(0);
+      eq(run.tick(10000), 'timeout');
+      eq(run.outcome.autoAnswered, true); eq(run.outcome.chosenBin, run.item.bin);
+      eq(run.points[0], 0); eq(run.correctCount, 0);
+    });
+    test('sort: timing out every item scores 0', () => eq(playSort(() => null).score(), 0));
+    test('sort: scoring uses the same time rule as the procedures', () => {
+      const run = new SortRun(sort, noShuffle);
+      run.start(0);
+      eq(run.tap(run.item.bin, 4500).points, 5);
+    });
+    test('sort: the next item waits for the feedback pause', () => {
+      const run = new SortRun(sort, noShuffle);
+      run.start(0);
+      run.tap(run.item.bin, 100);
+      eq(run.canAdvance(100 + MOVE_MS + FEEDBACK_MS - 1), false);
+      eq(run.canAdvance(100 + MOVE_MS + FEEDBACK_MS), true);
+    });
+    test('sort: pause freezes the clock and blocks taps and timeouts', () => {
+      const run = new SortRun(sort, noShuffle);
+      run.start(0);
+      eq(run.pause(3000), true);
+      eq(run.remainingMs(9000), 7000);
+      eq(run.tick(30000), null);
+      eq(run.tap(run.item.bin, 30000).ignored, true);
+      run.resume(30000);
+      eq(run.remainingMs(30000), 7000);
+    });
+
+    const out = results.join('\n');
+    document.getElementById('out').textContent = out;
+    document.title = results.some((r) => r.startsWith('FAIL')) ? 'FAIL' : 'ALL PASS';
+  </script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+{
+  "id": "sterilization",
+  "title": "Sterilization",
+  "engine": "sort",
+  "status": "DRAFT, unreviewed. Item routes from the Developer's own knowledge; not yet checked by a reviewer or a published source.",
+  "instructions": "Tools have been initially wiped down. Sort each into ultrasonic cleaning or heat sterilization.",
+  "note": "*Both routes require proper cleaning before autoclaving. Follow manufacturer instructions.",
+  "banner": "Sort each tool into the correct place",
+  "prompt": "They've already all been wiped down. What's the next step?",
+  "bins": [
+    { "id": "ultrasonic", "label": "Ultrasonic cleaner", "image": "assets/bins/ultrasonic-cleaner.png" },
+    { "id": "heat", "label": "Heat sterilization", "image": "assets/bins/heat-sterilization.png" }
+  ],
+  "items": [
+    { "id": "mouth-mirror", "label": "Mouth mirror", "bin": "ultrasonic", "image": "assets/sort/mouth-mirror.png", "hint": "" },
+    { "id": "explorer", "label": "Explorer", "bin": "ultrasonic", "image": "assets/sort/explorer.png", "hint": "" },
+    { "id": "hand-scaler", "label": "Hand scaler", "bin": "ultrasonic", "image": "assets/sort/hand-scaler.png", "hint": "" },
+    { "id": "cotton-pliers", "label": "Cotton pliers", "bin": "ultrasonic", "image": "assets/sort/cotton-pliers.png", "hint": "" },
+    { "id": "extraction-forceps", "label": "Extraction forceps", "bin": "ultrasonic", "image": "assets/sort/extraction-forceps.png", "hint": "" },
+    { "id": "elevator", "label": "Elevator", "bin": "ultrasonic", "image": "assets/sort/elevator.png", "hint": "" },
+    { "id": "high-speed-handpiece", "label": "High-speed handpiece", "bin": "heat", "image": "assets/sort/high-speed-handpiece.png", "hint": "" },
+    { "id": "low-speed-motor", "label": "Low-speed motor", "bin": "heat", "image": "assets/sort/low-speed-motor.png", "hint": "" },
+    { "id": "prophy-angle", "label": "Reusable metal prophy angle", "bin": "heat", "image": "assets/sort/prophy-angle.png", "hint": "" },
+    { "id": "contra-angle", "label": "Contra-angle attachment", "bin": "heat", "image": "assets/sort/contra-angle.png", "hint": "" }
+  ]
+}

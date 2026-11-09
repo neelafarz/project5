@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><title>Smoke test</title>
+  <style>
+    body { margin: 0; display: flex; gap: 16px; font: 13px/1.4 monospace; }
+    iframe { width: 430px; height: 900px; border: 1px solid #888; }
+  </style>
+</head>
+<body>
+  <!-- Clicks through the real app in an iframe, in real time (about 1 minute): opening, selection,
+       intro, a full composite filling run, and the end screen. Open via a local server. -->
+  <iframe id="app" src="../index.html"></iframe>
+  <pre id="out">running...</pre>
+  <script type="module">
+    const results = [];
+    const check = (name, ok, detail = '') => results.push(`${ok ? 'PASS' : 'FAIL'} ${name} ${detail}`);
+    const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+    const report = () => { document.getElementById('out').textContent = results.join('\n'); };
+
+    const frame = document.getElementById('app');
+    await new Promise((r) => frame.addEventListener('load', r));
+    await wait(400);
+    const doc = frame.contentDocument;
+    const $ = (s) => doc.querySelector(s);
+    const $$ = (s) => [...doc.querySelectorAll(s)];
+    const visible = (name) => !$(`[data-screen="${name}"]`).hidden;
+    const toolsEnabled = () => $$('.tool:not(:disabled)').length > 0;
+    const popupOpen = () => !$('[data-slot="popup"]').hidden;
+    const timerText = () => $('[data-slot="timer"]').textContent;
+
+    const app = await (await fetch('../data/app.json')).json();
+    const filling = await (await fetch('../data/composite-filling.json')).json();
+    const picks = filling.steps.filter((s) => s.pick).map((s) => s.pick);
+
+    // ---- Opening, selection, intro ----
+    check('opening screen shows first with Begin, Procedures, Settings',
+      visible('opening') && $$('[data-screen="opening"] button').map((b) => b.textContent).join() === 'Begin,Procedures,Settings');
+    check('disclaimer on the home page matches word for word',
+      $('[data-screen="opening"] .disclaimer').textContent === app.disclaimer);
+
+    $('[data-goto="procedures"]').click();
+    check('Procedures guide lists the filling steps', visible('procedures') && $$('[data-slot="guide"] li').length === filling.steps.length);
+    $('[data-screen="procedures"] [data-goto="opening"]').click();
+    $('[data-goto="settings"]').click();
+    check('Settings opens', visible('settings'));
+    $('[data-screen="settings"] [data-goto="opening"]').click();
+
+    $('[data-goto="selection"]').click();
+    const tiles = $$('[data-slot="modes"] .tile');
+    check('selection has six tiles in the frame order',
+      tiles.map((t) => t.textContent.replace(' (coming soon)', '')).join() === 'Filling,Crown Prep,Crown Seat,Root Canal,Extraction,Sterilization');
+    check('only Filling and Sterilization are playable',
+      tiles.filter((t) => !t.disabled).map((t) => t.textContent).join() === 'Filling,Sterilization');
+    check('disclaimer shows on the selection screen',
+      $('[data-screen="selection"] .disclaimer-box').textContent === app.disclaimer);
+    check('overall accuracy starts empty', $('[data-slot="overall"]').textContent === '--');
+
+    tiles[0].click();
+    await wait(300);
+    check('intro screen shows before the game, with the exact disclaimer',
+      visible('intro') && !visible('game') && $('[data-screen="intro"] .disclaimer-box').textContent === app.disclaimer);
+
+    // ---- Game ----
+    $('[data-action="begin-game"]').click();
+    check('game screen opens with 8 tools', visible('game') && $$('.tool').length === 8);
+    await wait(1100);
+    check('countdown runs', /^Time: (9|8) seconds$/.test(timerText()), `(shows "${timerText()}")`);
+
+    $('[data-action="pause"]').click();
+    const frozen = timerText();
+    check('pause covers the screen', !$('[data-slot="pause"]').hidden);
+    await wait(1500);
+    check('pause freezes the countdown', timerText() === frozen, `("${frozen}" then "${timerText()}")`);
+    $('[data-tool="matrix-wedges"]').click(); // a tap while paused must do nothing
+    check('a tap while paused is ignored', toolsEnabled() && popupOpen() === false);
+    $('[data-action="resume"]').click();
+    check('resume hides the pause panel', $('[data-slot="pause"]').hidden);
+
+    $('[data-tool="floss"]').click();
+    check('wrong pick shakes and shows a hint-box message',
+      $('[data-tool="floss"]').classList.contains('wrong') && $('[data-slot="message"]').textContent !== '');
+    check('wrong pick keeps the clock running', timerText().startsWith('Time:'));
+
+    $('[data-tool="matrix-wedges"]').click();
+    check('tray locks after a correct pick', $$('.tool').every((b) => b.disabled));
+    await wait(60);
+    check('pause is unavailable while a result plays', $('[data-action="pause"]').disabled);
+    check('tool is flying to the hand', $$('.flying').length === 1);
+    await wait(700);
+    check('flying clone removed after landing', $$('.flying').length === 0);
+    check('matrix popup shows', popupOpen(), `("${$('[data-slot="popup"] p').textContent}")`);
+    check('scene changed', $('.scene-label').textContent === 'matrix-placed');
+    await wait(3000);
+    check('cannot advance while the popup is open', !toolsEnabled());
+    $('[data-slot="popup"] button').click();
+
+    // ---- Play the rest of the run, tapping each tool as soon as the tray opens ----
+    let next = 1;
+    const deadline = performance.now() + 90000;
+    while (!visible('end') && performance.now() < deadline) {
+      if (popupOpen()) $('[data-slot="popup"] button').click();
+      else if (toolsEnabled() && next < picks.length) $(`[data-tool="${picks[next++]}"]`).click();
+      await wait(30);
+    }
+    check('run reaches the end screen after all 12 picks', visible('end') && next === picks.length, `(picks tapped: ${next})`);
+
+    // ---- End screen ----
+    check('end screen shows 100% for an all-fast run', $('[data-screen="end"] .big').textContent === '100%');
+    check('five filled stars at 100%', $$('.star.filled').length === 5 && $$('.star').length === 5);
+    check('end screen has Play Again, New Game, Home',
+      $$('[data-screen="end"] button').map((b) => b.textContent).join() === 'Play Again,New Game,Home');
+    $('[data-screen="end"] [data-goto="selection"]').click();
+    check('overall accuracy updates on the selection screen', $('[data-slot="overall"]').textContent === '100%');
+    tiles[0].click();
+    await wait(300);
+    $('[data-action="begin-game"]').click();
+    $('[data-action="pause"]').click();
+    $('[data-slot="pause"] [data-action="back"]').click();
+    check('Quit from pause returns to selection', visible('selection'));
+
+    // ---- Sterilization sort: wrong pick, hint, auto-answer, then the rest, tapping fast ----
+    const sort = await (await fetch('../data/sterilization.json')).json();
+    const itemOnScreen = () => sort.items.find((i) => i.label === $('[data-slot="item"] span').textContent);
+    const binsEnabled = () => $$('.bin:not(:disabled)').length > 0;
+    const otherBin = (item) => sort.bins.find((b) => b.id !== item.bin).id;
+
+    tiles[5].click();
+    await wait(300);
+    check('sort intro shows the instructions, the footnote and the disclaimer',
+      visible('intro') && $('[data-screen="intro"] [data-slot="instructions"]').textContent === sort.instructions
+      && $('[data-screen="intro"] [data-slot="intro-note"]').textContent === sort.note
+      && $('[data-screen="intro"] .disclaimer-box').textContent === app.disclaimer);
+    $('[data-action="begin-game"]').click();
+    const sortScreen = $('[data-screen="sort"]');
+    check('sort screen has two bins, the banner, the prompt and a 0/10 count',
+      visible('sort') && sortScreen.querySelectorAll('.bin').length === 2
+      && sortScreen.querySelector('[data-slot="banner"]').textContent === sort.banner
+      && sortScreen.querySelector('[data-slot="message"]').textContent === sort.prompt
+      && sortScreen.querySelector('[data-slot="count"]').textContent === '0/10');
+    await wait(400);
+    check('sort countdown runs', /^Time: (9|10) seconds?$/.test(sortScreen.querySelector('[data-slot="timer"]').textContent));
+
+    sortScreen.querySelector('[data-action="pause"]').click();
+    check('sort pause covers the screen', !sortScreen.querySelector('[data-slot="pause"]').hidden);
+    sortScreen.querySelector('[data-action="resume"]').click();
+
+    // Item 1: pick the wrong bin on purpose.
+    const first = itemOnScreen();
+    sortScreen.querySelector(`[data-bin="${otherBin(first)}"]`).click();
+    check('a wrong pick turns the item red and keeps the count at 0/10',
+      sortScreen.querySelector('[data-slot="item"]').classList.contains('wrong')
+      && sortScreen.querySelector('[data-slot="count"]').textContent === '0/10');
+    check('a wrong pick is final: the bins lock', !binsEnabled());
+    while (binsEnabled() === false) await wait(30); // wait for item 2
+
+    // Item 2: do nothing. The hint comes at 5 s and the game sorts it at 10 s.
+    const second = itemOnScreen();
+    check('item 2 is a different tool', second.id !== first.id);
+    await wait(5300);
+    check('the hint appears at 5 seconds',
+      sortScreen.querySelector('[data-slot="message"]').textContent !== sort.prompt
+      && sortScreen.querySelector('[data-slot="message"]').textContent !== '');
+    await wait(5000);
+    check('at 10 seconds the game sorts the tool for the player',
+      sortScreen.querySelector('[data-slot="message"]').textContent.startsWith('Time is up')
+      && sortScreen.querySelector(`[data-bin="${second.bin}"]`).classList.contains('correct'));
+    check('an auto-sorted tool does not count as correct', sortScreen.querySelector('[data-slot="count"]').textContent === '0/10');
+    while (binsEnabled() === false) await wait(30); // wait for item 3
+
+    // Items 3 to 10: tap the right bin as soon as each item appears.
+    let answered = 0;
+    const sortDeadline = performance.now() + 60000;
+    while (!visible('end') && performance.now() < sortDeadline) {
+      if (binsEnabled()) {
+        sortScreen.querySelector(`[data-bin="${itemOnScreen().bin}"]`).click();
+        answered += 1;
+      }
+      await wait(30);
+    }
+    check('the round reaches the end screen after all 10 items', visible('end') && answered === 8, `(answered fast: ${answered})`);
+    check('sort end screen shows 80% (8 fast right, 1 wrong, 1 auto-sorted)', $('[data-screen="end"] .big').textContent === '80%');
+    check('sort end screen shows 4 stars', $$('.star.filled').length === 4);
+    check('sort end screen shows 8 / 10 correct and the footnote',
+      $('[data-screen="end"] [data-slot="detail"]').textContent === '8 / 10 correct'
+      && $('[data-screen="end"] [data-slot="end-note"]').textContent === sort.note);
+    $('[data-screen="end"] [data-goto="selection"]').click();
+    check('overall accuracy averages the best of each mode played (100 and 80 gives 90%)',
+      $('[data-slot="overall"]').textContent === '90%');
+
+    report();
+    // The title carries the summary so a headless runner can read it (see AGENTS.md).
+    const failed = results.filter((r) => r.startsWith('FAIL'));
+    document.title = failed.length ? `FAIL: ${failed.join(' | ')}` : `ALL PASS (${results.length})`;
+  </script>
+</body>
+</html>

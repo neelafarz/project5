@@ -44,4 +44,18 @@ When the Developer directs the Agent to save a transcript, save the entire text 
 
 # Project
 
-Fill in as the project takes shape: how to run it locally, how to test it, and any commands or structure that aren't obvious from the code.
+Plain HTML, CSS, and JavaScript (ES modules), no framework or build step. See `spec.md` for behavior and architecture.
+
+**Run locally.** Modules and `fetch` need a server, so `file://` will not work:
+
+`python3 -m http.server 8765` then open `http://localhost:8765/`
+
+**Test.** Node is not installed, so tests run in the browser:
+- `http://localhost:8765/tests/` runs the scoring and engine rules (no DOM).
+- `http://localhost:8765/tests/smoke.html` clicks through the real app in an iframe in real time. The page title shows `ALL PASS (n)` or the failures.
+- Headless: start Chrome with `--headless=new --remote-debugging-port=9333` on the smoke URL and read the page title from `http://localhost:9333/json`. Chrome's `--virtual-time-budget` flag does not work for the smoke test, because animation frames stop advancing.
+
+**Structure.**
+- `index.html` has one `<section data-screen>` per screen; the Developer designs these. `app.js` wires buttons by `data-action` and fills text by `data-text` and `data-slot`.
+- `js/score.js` is the only place scoring rules live. `js/procedureRun.js` and `js/sortRun.js` are the engine rules with no DOM; `js/procedureView.js` and `js/sortView.js` draw them. `js/pickClock.js` (countdown with pause) and `js/fly.js` (tool animation) are shared by both engines.
+- Content lives in `data/` (`app.json` for the mode list and disclaimer, one file per procedure). Code never holds procedure content.
