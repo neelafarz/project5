@@ -24,7 +24,7 @@ body {
 /* One portrait column, centered on larger screens. */
 #app {
   max-width: var(--max-width);
-  min-height: 100dvh;
+  height: 100dvh; /* every screen fits the viewport; long content scrolls inside its section */
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -34,6 +34,8 @@ body {
 
 section[data-screen] {
   flex: 1;
+  min-height: 0;
+  overflow-y: auto;
   display: flex;
   flex-direction: column;
   gap: 12px;
@@ -64,7 +66,7 @@ header h2 { margin: 0; }
 [data-slot="timer"] { margin: 0; font-size: 1.3rem; font-weight: 700; text-align: center; flex: 1; }
 .hint-box { min-height: 3em; margin: 0; padding: 8px 0; text-align: center; border-block: 1px solid var(--panel); }
 
-[data-slot="scene"] { position: relative; flex: 1; min-height: 200px; }
+[data-slot="scene"] { position: relative; flex: 1; min-height: 0; } /* the scene gives way so the tray always fits */
 .mouth {
   position: absolute; inset: 4% 22% 22%;
   border-radius: 50%;
@@ -117,7 +119,7 @@ header h2 { margin: 0; }
 .count { margin: 0; text-align: right; font-weight: 700; }
 .item {
   flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px;
-  min-height: 160px; border-radius: 12px; font-size: 1.1rem;
+  min-height: 0; border-radius: 12px; font-size: 1.1rem;
 }
 .item img { max-height: 120px; max-width: 60%; object-fit: contain; }
 .item.wrong { background: rgba(229, 72, 77, 0.45); outline: 2px solid var(--wrong); }
