@@ -81,25 +81,19 @@ header h2 { margin: 0; }
 .scene-art { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; }
 .scene-label { position: absolute; right: 0; top: 0; margin: 0; font-size: 0.7rem; opacity: 0.6; }
 
-/* The tray: a rimmed, textured surface with the tools lying on it, no captions. */
+/* The tray: the Canva tray image (credited in research.md and Settings), with the tools lying on it. */
 [data-slot="tray"] {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 4px;
-  padding: 14px 10px;
-  border-radius: 22px;
-  border: 5px solid #58c3cb;
-  background:
-    repeating-linear-gradient(115deg, rgba(255, 255, 255, 0.16) 0 2px, transparent 2px 9px),
-    linear-gradient(145deg, #b9f5f8, #6fd6dd);
-  box-shadow:
-    inset 0 0 0 3px rgba(255, 255, 255, 0.4),
-    inset 0 8px 16px rgba(0, 70, 80, 0.28),
-    0 8px 18px rgba(0, 0, 0, 0.4);
+  gap: 2px;
+  /* keeps the tools inside the tray's inner surface, clear of the rim */
+  padding: 8% 7%;
+  background: url("assets/tray/tray-landscape.png") center / 100% 100% no-repeat;
+  filter: drop-shadow(0 8px 14px rgba(0, 0, 0, 0.4));
 }
 .tool {
   display: flex; align-items: center; justify-content: center;
-  height: 112px; padding: 4px;
+  height: 100px; padding: 2px;
   border: 0; border-radius: 12px; background: none;
   color: #1c2a33; font-size: 0.65rem; text-align: center;
 }
@@ -107,6 +101,11 @@ header h2 { margin: 0; }
   width: 100%; height: 100%; object-fit: contain;
   filter: drop-shadow(2px 5px 3px rgba(0, 60, 70, 0.4)); /* the tool rests on the tray */
 }
+/* A tray with layout data: sized like the tray image so it is never stretched, tools placed freely. */
+[data-slot="tray"].free { display: block; position: relative; aspect-ratio: 546 / 389; padding: 0; }
+.tool.positioned { position: absolute; translate: -50% -50%; width: auto; padding: 0; }
+.tool.positioned img { height: 100%; width: auto; }
+.tool.positioned::after { content: ''; position: absolute; inset: -6px; } /* a larger tap target */
 .tool:active:not(:disabled) img { transform: scale(0.95); }
 .tool:disabled { opacity: 0.8; }
 .tool.hint img { filter: drop-shadow(0 0 5px #fff) drop-shadow(0 0 9px var(--accent)); }

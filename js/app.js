@@ -63,6 +63,15 @@ function fillSharedText() {
 
 const isPlayable = (mode) => mode.built && ENGINES[mode.engine];
 
+function buildCredits() {
+  const list = $('[data-slot="credits"]');
+  list.replaceChildren(...(app.credits ?? []).map((text) => {
+    const item = document.createElement('li');
+    item.textContent = text;
+    return item;
+  }));
+}
+
 function buildSelection() {
   const holder = $('[data-slot="modes"]');
   holder.replaceChildren();
@@ -156,6 +165,7 @@ async function init() {
   app = await loadJson('data/app.json');
   fillSharedText();
   buildSelection();
+  buildCredits();
   buildGuide().catch(() => {}); // the guide is optional; the game does not depend on it
   show('opening');
 }

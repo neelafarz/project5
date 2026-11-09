@@ -68,7 +68,7 @@ Approved:
 - At 0 the correct tool is hinted and play moves on.
 - Each step has an optional **pick** (timed) and a **result** (the scene change, an optional message, and an optional duration). A step with no pick, such as the dentist removing the matrix, just plays its result. A result marked as a wait (for example, curing, about 3 seconds) is not timed against the player and cannot be skipped. Only steps with a pick are counted for scoring.
 - Popups appear on steps that vary by dentist.
-- The tray shows the tool list of the current procedure, as the tools lying on a realistic instrument tray with no visible words, because real trays have no captions (Developer). Tool names stay available to screen readers, and a missing image falls back to its name as a stand-in.
+- The tray shows the tool list of the current procedure, as the tools lying on a realistic instrument tray with no visible words, because real trays have no captions (Developer). Tool names stay available to screen readers, and a missing image falls back to its name as a stand-in. The tray is the Canva tray image turned horizontal, and each tool's position on it (center, length, tilt) is data in the procedure file, so a new procedure arranges its own tray and any tool can be nudged without code. Tools without layout data fall back to a plain grid.
 
 Acceptance checks:
 - The run 9, 10, 5, 10, 3, 6, 7, 8, 10, 6 totals 74. A timeout scores 0 for that step. A wrong pick followed by a correct one scores by the time of the correct pick.

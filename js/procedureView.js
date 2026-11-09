@@ -42,6 +42,8 @@ export class ProcedureView {
   #buildTray() {
     const tray = this.slot('tray');
     tray.replaceChildren();
+    // Tools with layout data lie where the data puts them; otherwise the tray is a plain grid.
+    tray.classList.toggle('free', this.data.tray.every((tool) => tool.layout));
     for (const tool of this.data.tray) {
       const button = document.createElement('button');
       button.className = 'tool';
@@ -58,9 +60,16 @@ export class ProcedureView {
       label.hidden = true;
       img.onerror = () => { img.remove(); label.hidden = false; };
       button.append(img, label);
+      if (tool.layout) this.#place(button, tool.layout);
       button.addEventListener('click', () => this.#onTap(tool.id));
       tray.append(button);
     }
+  }
+
+  // Lays a tool on the tray: center (x, y) and length (h) in % of the tray, tilted by rot degrees.
+  #place(button, { x, y, h, rot }) {
+    button.classList.add('positioned');
+    Object.assign(button.style, { left: `${x}%`, top: `${y}%`, height: `${h}%`, rotate: `${rot}deg` });
   }
 
   #toolButton(id) {

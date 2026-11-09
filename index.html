@@ -13,7 +13,7 @@
       data-goto="<screen>"   a button that opens that screen
       data-action="..."      begin-game | again | back | pause | resume
       data-text="..."        filled from data/app.json (title, tagline, disclaimer)
-      data-slot="..."        filled by the app (modes, guide, overall, score, stars, best, detail,
+      data-slot="..."        filled by the app (modes, guide, credits, overall, score, stars, best, detail,
                              mode-title, instructions, intro-note, end-note) or by an engine view:
                              game: scene, hand, message, tray, timer, popup, pause
                              sort: banner, message, count, item, bins, timer, pause
@@ -54,7 +54,9 @@
         <button data-goto="opening" aria-label="Back">&larr;</button>
         <h2>Settings</h2>
       </header>
-      <p>Coming soon.</p>
+      <p>Settings coming soon.</p>
+      <h3>Credits</h3>
+      <ul data-slot="credits"></ul>
     </section>
 
     <!-- Approved in spec: the disclaimer before every game (not drawn in the frames) -->

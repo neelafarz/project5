@@ -5,14 +5,94 @@
   "status": "DRAFT, unreviewed. Steps from the Developer's own knowledge; not yet checked by a reviewer or a published source.",
   "startScene": "tooth-prepared-isolated",
   "tray": [
-    { "id": "matrix-wedges", "label": "Matrix system and wedges", "image": "assets/tools/matrix-wedges.png" },
-    { "id": "etchant", "label": "Etchant syringe", "image": "assets/tools/etchant.png" },
-    { "id": "bonding", "label": "Bonding agent with microbrush", "image": "assets/tools/bonding.png" },
-    { "id": "curing-light", "label": "Curing light", "image": "assets/tools/curing-light.png" },
-    { "id": "composite-dispenser", "label": "Composite dispenser", "image": "assets/tools/composite-dispenser.png" },
-    { "id": "placement-instrument", "label": "Composite placement instrument", "image": "assets/tools/placement-instrument.png" },
-    { "id": "floss", "label": "Floss", "image": "assets/tools/floss.png" },
-    { "id": "articulating-paper", "label": "Articulating paper", "image": "assets/tools/articulating-paper.png" }
+    {
+      "id": "matrix-wedges",
+      "label": "Matrix system and wedges",
+      "image": "assets/tools/matrix-wedges.png",
+      "layout": {
+        "x": 51,
+        "y": 31,
+        "h": 36,
+        "rot": 0
+      }
+    },
+    {
+      "id": "etchant",
+      "label": "Etchant syringe",
+      "image": "assets/tools/etchant.png",
+      "layout": {
+        "x": 36,
+        "y": 50,
+        "h": 62,
+        "rot": -2
+      }
+    },
+    {
+      "id": "bonding",
+      "label": "Bonding agent with microbrush",
+      "image": "assets/tools/bonding.png",
+      "layout": {
+        "x": 64,
+        "y": 31,
+        "h": 34,
+        "rot": 3
+      }
+    },
+    {
+      "id": "curing-light",
+      "label": "Curing light",
+      "image": "assets/tools/curing-light.png",
+      "layout": {
+        "x": 15,
+        "y": 50,
+        "h": 68,
+        "rot": -3
+      }
+    },
+    {
+      "id": "composite-dispenser",
+      "label": "Composite dispenser",
+      "image": "assets/tools/composite-dispenser.png",
+      "layout": {
+        "x": 79,
+        "y": 31,
+        "h": 36,
+        "rot": -3
+      }
+    },
+    {
+      "id": "placement-instrument",
+      "label": "Composite placement instrument",
+      "image": "assets/tools/placement-instrument.png",
+      "layout": {
+        "x": 26,
+        "y": 50,
+        "h": 66,
+        "rot": 3
+      }
+    },
+    {
+      "id": "floss",
+      "label": "Floss",
+      "image": "assets/tools/floss.png",
+      "layout": {
+        "x": 81,
+        "y": 68,
+        "h": 24,
+        "rot": 4
+      }
+    },
+    {
+      "id": "articulating-paper",
+      "label": "Articulating paper",
+      "image": "assets/tools/articulating-paper.png",
+      "layout": {
+        "x": 58,
+        "y": 69,
+        "h": 34,
+        "rot": 90
+      }
+    }
   ],
   "steps": [
     {
@@ -20,83 +100,131 @@
       "pick": "matrix-wedges",
       "hint": "",
       "popup": "Matrix preference depends on the doctor and the case.",
-      "result": { "scene": "matrix-placed", "message": "" }
+      "result": {
+        "scene": "matrix-placed",
+        "message": ""
+      }
     },
     {
       "id": "etch",
       "pick": "etchant",
       "hint": "",
-      "result": { "scene": "tooth-etched", "message": "Etching and rinsing happen automatically.", "durationMs": 2000 }
+      "result": {
+        "scene": "tooth-etched",
+        "message": "Etching and rinsing happen automatically.",
+        "durationMs": 2000
+      }
     },
     {
       "id": "bond",
       "pick": "bonding",
       "hint": "",
-      "result": { "scene": "tooth-bonded", "message": "Bonding and air-thinning happen automatically.", "durationMs": 2000 }
+      "result": {
+        "scene": "tooth-bonded",
+        "message": "Bonding and air-thinning happen automatically.",
+        "durationMs": 2000
+      }
     },
     {
       "id": "cure-bond",
       "pick": "curing-light",
       "hint": "",
-      "result": { "scene": "bond-cured", "message": "Curing time depends on the doctor and the material.", "durationMs": 3000, "wait": true }
+      "result": {
+        "scene": "bond-cured",
+        "message": "Curing time depends on the doctor and the material.",
+        "durationMs": 3000,
+        "wait": true
+      }
     },
     {
       "id": "dispense-1",
       "pick": "composite-dispenser",
       "hint": "",
-      "result": { "scene": "composite-dispensed-1" }
+      "result": {
+        "scene": "composite-dispensed-1"
+      }
     },
     {
       "id": "place-1",
       "pick": "placement-instrument",
       "hint": "",
-      "result": { "scene": "composite-base-layer" }
+      "result": {
+        "scene": "composite-base-layer"
+      }
     },
     {
       "id": "cure-1",
       "pick": "curing-light",
       "hint": "",
-      "result": { "scene": "base-layer-cured", "message": "Curing time depends on the doctor and the material.", "durationMs": 3000, "wait": true }
+      "result": {
+        "scene": "base-layer-cured",
+        "message": "Curing time depends on the doctor and the material.",
+        "durationMs": 3000,
+        "wait": true
+      }
     },
     {
       "id": "dispense-2",
       "pick": "composite-dispenser",
       "hint": "",
-      "result": { "scene": "composite-dispensed-2" }
+      "result": {
+        "scene": "composite-dispensed-2"
+      }
     },
     {
       "id": "place-2",
       "pick": "placement-instrument",
       "hint": "",
-      "result": { "scene": "composite-built-up" }
+      "result": {
+        "scene": "composite-built-up"
+      }
     },
     {
       "id": "cure-2",
       "pick": "curing-light",
       "hint": "",
-      "result": { "scene": "build-up-cured", "message": "Curing time depends on the doctor and the material.", "durationMs": 3000, "wait": true }
+      "result": {
+        "scene": "build-up-cured",
+        "message": "Curing time depends on the doctor and the material.",
+        "durationMs": 3000,
+        "wait": true
+      }
     },
     {
       "id": "remove-matrix",
       "pick": null,
-      "result": { "scene": "matrix-removed", "message": "The dentist removes the matrix and wedges.", "durationMs": 2000 }
+      "result": {
+        "scene": "matrix-removed",
+        "message": "The dentist removes the matrix and wedges.",
+        "durationMs": 2000
+      }
     },
     {
       "id": "floss",
       "pick": "floss",
       "hint": "",
-      "result": { "scene": "contacts-checked", "message": "Checking the contacts." }
+      "result": {
+        "scene": "contacts-checked",
+        "message": "Checking the contacts."
+      }
     },
     {
       "id": "bite",
       "pick": "articulating-paper",
       "hint": "",
-      "result": { "scene": "bite-checked", "message": "Checking the bite." }
+      "result": {
+        "scene": "bite-checked",
+        "message": "Checking the bite."
+      }
     },
     {
       "id": "finish",
       "pick": null,
-      "result": { "scene": "finished-polished", "message": "The dentist finishes and polishes.", "durationMs": 2000 }
+      "result": {
+        "scene": "finished-polished",
+        "message": "The dentist finishes and polishes.",
+        "durationMs": 2000
+      }
     }
   ]
 }
