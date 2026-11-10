@@ -103,9 +103,10 @@ h2, h3 { font-weight: 800; }
   container-type: size;
   --patient-height: 142cqh;
   --patient-top: -10cqh; /* the patient is taller than the scene (the bib is cropped); lifted so the mouth stays at mid-height */
-  --hand-width: 53cqh;
-  --hand-top: 68%; /* the open hand waits below the mouth, so the mouth stays visible */
-  --working-top: 57%; /* the working hand moves up to the mouth */
+  --hand-width: 62cqh;
+  --hand-left: 2cqh; /* the hand starts a little in from the left edge */
+  --hand-top: 72%; /* the open hand waits below the mouth, so the mouth stays visible */
+  --working-top: 58%; /* the working hand moves up to the mouth */
   overflow: hidden;
   border-radius: 28px; background: var(--icy); box-shadow: var(--press); /* a soft icy-blue window onto the room */
 }
@@ -114,7 +115,7 @@ h2, h3 { font-weight: 800; }
   height: var(--patient-height); width: auto;
 }
 .hand {
-  position: absolute; left: 0; top: var(--hand-top);
+  position: absolute; left: var(--hand-left); top: var(--hand-top);
   width: var(--hand-width); height: auto;
 }
 .hand.working { top: var(--working-top); }
