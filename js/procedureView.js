@@ -7,10 +7,12 @@ import { flyTo } from './fly.js';
 
 export class ProcedureView {
   // `screen` is the <section data-screen="game"> element; `onFinish(score)` is called at the end.
-  constructor(screen, data, onFinish) {
+  // `cast` (from data/app.json) lists the patients and hands shared by every procedure.
+  constructor(screen, data, onFinish, cast) {
     this.screen = screen;
     this.data = data;
     this.onFinish = onFinish;
+    this.cast = cast;
     this.run = new ProcedureRun(data);
     this.timeouts = [];
     this.frame = null;
@@ -19,6 +21,7 @@ export class ProcedureView {
 
   start() {
     this.#buildTray();
+    this.#chooseCast();
     this.#setScene(this.data.startScene);
     this.run.start(performance.now());
     this.#showStep();
@@ -83,6 +86,21 @@ export class ProcedureView {
     });
   }
 
+  // Each run picks a patient and a dentist's hand at random (provisional).
+  #chooseCast() {
+    const pick = (list) => list[Math.floor(Math.random() * list.length)];
+    this.openHand = pick(this.cast.openHands);
+    this.screen.querySelector('.patient').src = pick(this.cast.patients);
+    this.#setHand('open');
+  }
+
+  // The open hand waits for a tool; the working hand shows while the dentist works.
+  #setHand(state) {
+    const hand = this.slot('hand');
+    hand.src = state === 'open' ? this.openHand : this.cast.workingHand;
+    hand.classList.toggle('working', state === 'working');
+  }
+
   #setScene(scene) {
     const art = this.screen.querySelector('.scene-art');
     art.hidden = false;
@@ -99,6 +117,7 @@ export class ProcedureView {
   #showStep() {
     this.#setMessage('');
     if (this.run.phase === 'pick') {
+      this.#setHand('open');
       this.#setTrayEnabled(true);
     } else if (this.run.phase === 'result') {
       this.#setTrayEnabled(false);
@@ -129,6 +148,7 @@ export class ProcedureView {
 
   #showResult() {
     const { result, popup } = this.run.step;
+    this.#setHand('working');
     this.#setScene(result.scene);
     this.#setMessage(result.message || '');
     if (popup) this.#showPopup(popup);

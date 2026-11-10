@@ -116,7 +116,7 @@ async function openIntro(mode) {
 function beginGame() {
   const { mode, data } = current;
   const { View, screen } = ENGINES[mode.engine];
-  view = new View(screens[screen], data, finishGame);
+  view = new View(screens[screen], data, finishGame, app.cast);
   show(screen);
   view.start();
 }

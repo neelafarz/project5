@@ -48,5 +48,16 @@
   ],
   "credits": [
     "Tray artwork: Canva"
-  ]
+  ],
+  "cast": {
+    "patients": [
+      "assets/cast/patient-1.png",
+      "assets/cast/patient-2.png"
+    ],
+    "openHands": [
+      "assets/cast/hand-open-1.png",
+      "assets/cast/hand-open-2.png"
+    ],
+    "workingHand": "assets/cast/hand-working.png"
+  }
 }

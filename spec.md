@@ -176,7 +176,7 @@ Both loops are one cycle of input, check against data, change state, and render,
 
 - Mobile-first portrait layout, about 480px wide, centered on larger screens.
 - The look (color and type) is not final. Colors and fonts are CSS variables so they can change in one place. **(open)**
-- Scene art is a fixed set of layers: mouth and face, empty hand and sleeve, tray, and one transparent image per tool, all in one style.
+- Scene art is a fixed set of layers: the patient, the dentist's hand, the tray, and one transparent image per tool, all in one style. The cast is shared by every procedure and listed in `data/app.json`: two patients, two open hands (different skin tones), and one working hand. The open hand waits below the mouth for each tool. After a correct pick the dentist switches to the working hand at the mouth, then back to the open hand at the next step. Each run picks a patient and an open hand at random. **(provisional)**
 - Placeholder shapes are used until the Developer supplies art. Fonts must be open-licensed and credited in `research.md`.
 
 ### Structure rules

@@ -67,17 +67,24 @@ header h2 { margin: 0; }
 .hint-box { min-height: 3em; margin: 0; padding: 8px 0; text-align: center; border-block: 1px solid var(--panel); }
 
 [data-slot="scene"] { position: relative; flex: 1; min-height: 0; } /* the scene gives way so the tray always fits */
-.mouth {
-  position: absolute; inset: 4% 22% 22%;
-  border-radius: 50%;
-  background: radial-gradient(#9b5a58 40%, #e07b6a 41%);
+/* The scene: patient at the top center, the dentist's hand coming in from the left.
+   Positions are variables so they can be tuned in one place. */
+[data-slot="scene"] {
+  --patient-width: 62%;
+  --hand-width: 52%;
+  --hand-top: 52%; /* the open hand waits below the mouth, so the mouth stays visible */
+  --working-top: 22%; /* the working hand moves up to the mouth */
+  overflow: hidden;
+}
+.patient {
+  position: absolute; left: 50%; top: 0; translate: -50% 0;
+  width: var(--patient-width); height: auto;
 }
 .hand {
-  position: absolute; left: 0; bottom: 8%;
-  width: 34%; height: 22%;
-  border-radius: 40px 40px 12px 12px;
-  background: #f2c9a4;
+  position: absolute; left: 0; top: var(--hand-top);
+  width: var(--hand-width); height: auto;
 }
+.hand.working { top: var(--working-top); }
 .scene-art { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; }
 .scene-label { position: absolute; right: 0; top: 0; margin: 0; font-size: 0.7rem; opacity: 0.6; }
 

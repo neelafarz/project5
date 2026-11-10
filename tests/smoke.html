@@ -91,9 +91,13 @@
     check('flying clone removed after landing', $$('.flying').length === 0);
     check('matrix popup shows', popupOpen(), `("${$('[data-slot="popup"] p').textContent}")`);
     check('scene changed', $('.scene-label').textContent === 'matrix-placed');
+    check('the patient picture loaded', $('.patient').complete && $('.patient').naturalWidth > 0);
+    check('the dentist switches to the working hand while working', $('[data-slot="hand"]').src.includes('hand-working'));
     await wait(3000);
     check('cannot advance while the popup is open', !toolsEnabled());
     $('[data-slot="popup"] button').click();
+    await wait(300);
+    check('the hand opens again for the next step', $('[data-slot="hand"]').src.includes('hand-open'));
 
     // ---- Play the rest of the run, tapping each tool as soon as the tray opens ----
     let next = 1;
