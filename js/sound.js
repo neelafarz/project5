@@ -20,12 +20,20 @@ export function setVolume(kind, value) {
   if (kind === 'music' && music) music.volume = value;
 }
 
-// Sets the soundtrack (path from data/app.json; empty means none).
-export function setMusic(path) {
-  if (!path) return;
-  music = new Audio(path);
-  music.loop = true;
+// Sets the soundtrack from data/app.json: one path, or a list of paths that play in order and then
+// start over. An empty value means no music. A single track simply loops.
+export function setMusic(paths) {
+  const tracks = [].concat(paths).filter(Boolean);
+  if (!tracks.length) return;
+  let current = 0;
+  music = new Audio(tracks[0]);
+  music.loop = tracks.length === 1;
   music.volume = volumes.music;
+  music.addEventListener('ended', () => {
+    current = (current + 1) % tracks.length;
+    music.src = tracks[current];
+    music.play().catch(() => {});
+  });
   // Browsers block sound until the player taps something, so start at the first tap.
   document.addEventListener('pointerdown', startMusic, { once: true });
 }
