@@ -22,7 +22,7 @@
       "image": "assets/tools/etchant.png",
       "layout": {
         "x": 53,
-        "y": 31,
+        "y": 41,
         "h": 36,
         "rot": 0
       }
@@ -33,7 +33,7 @@
       "image": "assets/tools/bonding.png",
       "layout": {
         "x": 64,
-        "y": 31,
+        "y": 41,
         "h": 34,
         "rot": 3
       }
@@ -55,7 +55,7 @@
       "image": "assets/tools/composite-dispenser.png",
       "layout": {
         "x": 79,
-        "y": 31,
+        "y": 41,
         "h": 36,
         "rot": -3
       }
@@ -66,8 +66,8 @@
       "image": "assets/tools/placement-instrument.png",
       "layout": {
         "x": 26,
-        "y": 50,
-        "h": 66,
+        "y": 52,
+        "h": 56,
         "rot": 3
       }
     },
@@ -76,8 +76,8 @@
       "label": "Floss",
       "image": "assets/tools/floss.png",
       "layout": {
-        "x": 81,
-        "y": 68,
+        "x": 82,
+        "y": 75,
         "h": 24,
         "rot": 4
       }
@@ -87,8 +87,8 @@
       "label": "Articulating paper",
       "image": "assets/tools/articulating-paper.png",
       "layout": {
-        "x": 62,
-        "y": 72,
+        "x": 58,
+        "y": 77,
         "h": 34,
         "rot": 90
       }
