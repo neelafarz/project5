@@ -26,16 +26,13 @@ export function setMusic(path) {
   music = new Audio(path);
   music.loop = true;
   music.volume = volumes.music;
+  // Browsers block sound until the player taps something, so start at the first tap.
+  document.addEventListener('pointerdown', startMusic, { once: true });
 }
 
-// Music plays only during a game: start it when a round begins, stop it when the round ends or is left.
-// (Starting from a tap is allowed by browsers.)
+// The music plays through the whole app, from the first tap on. Pausing the game pauses it too.
 export function startMusic() { music?.play().catch(() => {}); }
-export function stopMusic() {
-  if (!music) return;
-  music.pause();
-  music.currentTime = 0;
-}
+export function pauseMusic() { music?.pause(); }
 
 // One short tone: frequency in Hz, start offset and length in seconds, oscillator shape, peak volume.
 function tone(freq, start, length, shape = 'sine', volume = 0.2) {

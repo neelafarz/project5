@@ -146,8 +146,9 @@ export class SortView {
   }
 
   pause() {
-    if (!this.run.pause(performance.now())) return;
+    if (!this.run.pause(performance.now())) return false;
     this.slot('pause').hidden = false;
+    return true;
   }
 
   resume() {

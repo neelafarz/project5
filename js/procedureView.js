@@ -224,8 +224,9 @@ export class ProcedureView {
 
   // Freezes the countdown and covers the tray, so the player cannot tap while paused.
   pause() {
-    if (!this.run.pause(performance.now())) return;
+    if (!this.run.pause(performance.now())) return false;
     this.slot('pause').hidden = false;
+    return true;
   }
 
   resume() {

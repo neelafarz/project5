@@ -3,7 +3,7 @@
 
 import { ProcedureView } from './procedureView.js';
 import { SortView } from './sortView.js';
-import { getVolume, setVolume, setMusic, startMusic, stopMusic, play } from './sound.js';
+import { getVolume, setVolume, setMusic, startMusic, pauseMusic, play } from './sound.js';
 
 // Engines the shell can start, each with the screen it draws into.
 // A mode whose engine is missing here reads "coming soon".
@@ -131,11 +131,18 @@ function beginGame() {
   view = new View(screens[screen], data, finishGame, app.cast);
   show(screen);
   view.start();
+}
+
+// Pausing the game pauses the music; resuming brings it back.
+function pauseGame() {
+  if (view?.pause()) pauseMusic();
+}
+function resumeGame() {
+  view?.resume();
   startMusic();
 }
 
 function leaveGame() {
-  stopMusic();
   view?.destroy();
   view = null;
   show('selection');
@@ -156,7 +163,6 @@ function finishGame(score, info = {}) {
     star.textContent = '★';
     return star;
   }));
-  stopMusic();
   view = null;
   show('end');
 }
@@ -166,8 +172,8 @@ const actions = {
   'begin-game': beginGame,
   again: () => show('intro'), // the disclaimer screen comes before every game
   back: leaveGame,
-  pause: () => view?.pause(),
-  resume: () => view?.resume(),
+  pause: pauseGame,
+  resume: resumeGame,
 };
 document.addEventListener('click', (event) => {
   const target = event.target.closest('[data-goto], [data-action]');
@@ -188,5 +194,5 @@ async function init() {
 }
 // A hidden tab stops animation frames but not the clock, so pause the round when the player leaves
 // the tab; otherwise the countdown would run out unseen.
-document.addEventListener('visibilitychange', () => { if (document.hidden) view?.pause(); });
+document.addEventListener('visibilitychange', () => { if (document.hidden) pauseGame(); });
 init();

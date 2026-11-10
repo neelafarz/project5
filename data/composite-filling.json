@@ -10,10 +10,10 @@
       "label": "Matrix system and wedges",
       "image": "assets/tools/matrix-wedges.png",
       "layout": {
-        "x": 51,
-        "y": 31,
-        "h": 36,
-        "rot": 0
+        "x": 40,
+        "y": 47,
+        "h": 54,
+        "rot": -2
       }
     },
     {
@@ -21,10 +21,10 @@
       "label": "Etchant syringe",
       "image": "assets/tools/etchant.png",
       "layout": {
-        "x": 36,
-        "y": 50,
-        "h": 62,
-        "rot": -2
+        "x": 53,
+        "y": 31,
+        "h": 36,
+        "rot": 0
       }
     },
     {
@@ -87,8 +87,8 @@
       "label": "Articulating paper",
       "image": "assets/tools/articulating-paper.png",
       "layout": {
-        "x": 58,
-        "y": 69,
+        "x": 62,
+        "y": 72,
         "h": 34,
         "rot": 90
       }

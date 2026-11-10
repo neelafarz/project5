@@ -1,6 +1,8 @@
 // The "pass the tool" animation shared by both engines: a copy of the tapped
 // element flies from where it is to the target, then removes itself.
 // The copy keeps the element's size and tilt, so a tool lying at an angle flies at that angle.
+// The flight uses the separate `translate` property, which is applied before `rotate`; a `transform`
+// translate would be turned by the tilt, so a tool tilted 90 degrees would fly off sideways.
 
 export function flyTo(source, target, host, durationMs) {
   const from = source.getBoundingClientRect();
@@ -26,7 +28,7 @@ export function flyTo(source, target, host, durationMs) {
   const dx = to.left + to.width / 2 - centerX;
   const dy = to.top + to.height / 2 - centerY;
   clone.animate(
-    [{ transform: 'none', opacity: 1 }, { transform: `translate(${dx}px, ${dy}px) scale(0.6)`, opacity: 0.9 }],
+    [{ translate: '0 0', scale: '1', opacity: 1 }, { translate: `${dx}px ${dy}px`, scale: '0.6', opacity: 0.9 }],
     { duration: durationMs, easing: 'ease-in-out', fill: 'forwards' },
   ).finished.then(() => clone.remove(), () => clone.remove());
 }
