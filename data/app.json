@@ -47,7 +47,8 @@
     }
   ],
   "credits": [
-    "Tray artwork: Canva"
+    "Tray artwork: Canva",
+    "Music: \"For Documentary Loop\" by AudioCoffee (Freesound)"
   ],
   "cast": {
     "patients": [
@@ -61,5 +62,5 @@
     "workingHand": "assets/cast/hand-working-plain.png",
     "drillHand": "assets/cast/hand-working.png"
   },
-  "music": ""
+  "music": "assets/music/documentary-loop.m4a"
 }
