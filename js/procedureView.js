@@ -12,7 +12,7 @@ export class ProcedureView {
     this.screen = screen;
     this.data = data;
     this.onFinish = onFinish;
-    this.cast = cast;
+    this.cast = { patients: [], openHands: [], workingHand: '', ...cast };
     this.run = new ProcedureRun(data);
     this.timeouts = [];
     this.frame = null;
@@ -88,16 +88,20 @@ export class ProcedureView {
 
   // Each run picks a patient and a dentist's hand at random (provisional).
   #chooseCast() {
-    const pick = (list) => list[Math.floor(Math.random() * list.length)];
+    const pick = (list) => list[Math.floor(Math.random() * list.length)] ?? '';
     this.openHand = pick(this.cast.openHands);
-    this.screen.querySelector('.patient').src = pick(this.cast.patients);
+    const patient = this.screen.querySelector('.patient');
+    patient.hidden = this.cast.patients.length === 0;
+    if (!patient.hidden) patient.src = pick(this.cast.patients);
     this.#setHand('open');
   }
 
   // The open hand waits for a tool; the working hand shows while the dentist works.
   #setHand(state) {
     const hand = this.slot('hand');
-    hand.src = state === 'open' ? this.openHand : this.cast.workingHand;
+    const src = state === 'open' ? this.openHand : this.cast.workingHand;
+    hand.hidden = !src;
+    if (src) hand.src = src;
     hand.classList.toggle('working', state === 'working');
   }
 

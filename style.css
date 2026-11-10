@@ -68,17 +68,19 @@ header h2 { margin: 0; }
 
 [data-slot="scene"] { position: relative; flex: 1; min-height: 0; } /* the scene gives way so the tray always fits */
 /* The scene: patient at the top center, the dentist's hand coming in from the left.
-   Positions are variables so they can be tuned in one place. */
+   Everything is sized from the scene's own height (cqh), so a short window shrinks the
+   people instead of cropping them. Positions are variables so they can be tuned in one place. */
 [data-slot="scene"] {
-  --patient-width: 62%;
-  --hand-width: 52%;
+  container-type: size;
+  --patient-height: 120cqh; /* the patient is taller than the scene; the bib is cropped */
+  --hand-width: 53cqh;
   --hand-top: 52%; /* the open hand waits below the mouth, so the mouth stays visible */
   --working-top: 22%; /* the working hand moves up to the mouth */
   overflow: hidden;
 }
 .patient {
   position: absolute; left: 50%; top: 0; translate: -50% 0;
-  width: var(--patient-width); height: auto;
+  height: var(--patient-height); width: auto;
 }
 .hand {
   position: absolute; left: 0; top: var(--hand-top);
@@ -109,7 +111,11 @@ header h2 { margin: 0; }
   filter: drop-shadow(2px 5px 3px rgba(0, 60, 70, 0.4)); /* the tool rests on the tray */
 }
 /* A tray with layout data: sized like the tray image so it is never stretched, tools placed freely. */
-[data-slot="tray"].free { display: block; position: relative; aspect-ratio: 546 / 389; padding: 0; }
+[data-slot="tray"].free {
+  display: block; position: relative; aspect-ratio: 546 / 389; padding: 0;
+  /* never taller than 40% of the window, so a short window keeps room for the scene */
+  width: min(100%, calc(40dvh * 546 / 389)); align-self: center;
+}
 .tool.positioned { position: absolute; translate: -50% -50%; width: auto; padding: 0; }
 .tool.positioned img { height: 100%; width: auto; }
 .tool.positioned::after { content: ''; position: absolute; inset: -6px; } /* a larger tap target */

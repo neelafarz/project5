@@ -29,7 +29,7 @@ function show(name) {
 }
 
 async function loadJson(path) {
-  const response = await fetch(path);
+  const response = await fetch(path, { cache: 'no-cache' }); // revalidate: a cached copy must never be stale
   if (!response.ok) throw new Error(`Could not load ${path}`);
   return response.json();
 }
