@@ -75,7 +75,7 @@ header h2 { margin: 0; }
   --patient-height: 120cqh; /* the patient is taller than the scene; the bib is cropped */
   --hand-width: 53cqh;
   --hand-top: 52%; /* the open hand waits below the mouth, so the mouth stays visible */
-  --working-top: 22%; /* the working hand moves up to the mouth */
+  --working-top: 32%; /* the working hand moves up to the mouth */
   overflow: hidden;
 }
 .patient {
