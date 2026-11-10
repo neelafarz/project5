@@ -54,7 +54,12 @@
         <button data-goto="opening" aria-label="Back">&larr;</button>
         <h2>Settings</h2>
       </header>
-      <p>Settings coming soon.</p>
+      <label class="volume">Sound effects
+        <input type="range" min="0" max="100" data-volume="sfx">
+      </label>
+      <label class="volume">Music
+        <input type="range" min="0" max="100" data-volume="music">
+      </label>
       <h3>Credits</h3>
       <ul data-slot="credits"></ul>
     </section>

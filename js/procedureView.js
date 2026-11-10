@@ -13,7 +13,7 @@ export class ProcedureView {
     this.screen = screen;
     this.data = data;
     this.onFinish = onFinish;
-    this.cast = { patients: [], openHands: [], workingHand: '', ...cast };
+    this.cast = { patients: [], openHands: [], workingHand: '', drillHand: '', ...cast };
     this.run = new ProcedureRun(data);
     this.timeouts = [];
     this.frame = null;
@@ -98,9 +98,11 @@ export class ProcedureView {
   }
 
   // The open hand waits for a tool; the working hand shows while the dentist works.
-  #setHand(state) {
+  // `variant` 'drill' (a step's result.hand) shows the hand holding the drill, used for drilling and polishing.
+  #setHand(state, variant) {
     const hand = this.slot('hand');
-    const src = state === 'open' ? this.openHand : this.cast.workingHand;
+    const working = variant === 'drill' && this.cast.drillHand ? this.cast.drillHand : this.cast.workingHand;
+    const src = state === 'open' ? this.openHand : working;
     hand.hidden = !src;
     if (src) hand.src = src;
     hand.classList.toggle('working', state === 'working');
@@ -154,7 +156,7 @@ export class ProcedureView {
 
   #showResult() {
     const { result, popup } = this.run.step;
-    this.#setHand('working');
+    this.#setHand('working', result.hand);
     this.#setScene(result.scene);
     this.#setMessage(result.message || '');
     if (popup) this.#showPopup(popup);

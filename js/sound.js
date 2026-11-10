@@ -1,18 +1,39 @@
-// Sound effects, synthesized with the Web Audio API so there are no audio files to license or load.
+// Sound effects (synthesized with the Web Audio API, so no audio files to license) and background music.
 // Both engines call play('correct' | 'wrong' | 'timeout'). A page that blocks audio just stays silent.
+// Volumes (0 to 1) are set by the sliders in Settings and remembered in localStorage.
 
 let context = null;
-let muted = false;
-try { muted = localStorage.getItem('muted') === '1'; } catch { /* storage unavailable: sound stays on */ }
+const volumes = { sfx: 0.7, music: 0.5 };
+for (const key of Object.keys(volumes)) {
+  try {
+    const saved = localStorage.getItem(`volume-${key}`);
+    if (saved !== null) volumes[key] = Math.min(1, Math.max(0, Number(saved)));
+  } catch { /* storage unavailable: defaults */ }
+}
 
-export function isMuted() { return muted; }
-export function setMuted(value) {
-  muted = value;
-  try { localStorage.setItem('muted', value ? '1' : '0'); } catch { /* ignore */ }
+let music = null; // the looping <audio> element, once a soundtrack path is known
+
+export function getVolume(kind) { return volumes[kind]; }
+export function setVolume(kind, value) {
+  volumes[kind] = value;
+  try { localStorage.setItem(`volume-${kind}`, String(value)); } catch { /* ignore */ }
+  if (kind === 'music' && music) music.volume = value;
+}
+
+// Sets the soundtrack (path from data/app.json; empty means none). Playback starts at the first tap,
+// because browsers block sound before the player interacts with the page.
+export function setMusic(path) {
+  if (!path) return;
+  music = new Audio(path);
+  music.loop = true;
+  music.volume = volumes.music;
+  document.addEventListener('pointerdown', () => { music.play().catch(() => {}); }, { once: true });
 }
 
 // One short tone: frequency in Hz, start offset and length in seconds, oscillator shape, peak volume.
 function tone(freq, start, length, shape = 'sine', volume = 0.2) {
+  volume *= volumes.sfx;
+  if (volume < 0.001) return;
   const t0 = context.currentTime + start;
   const osc = context.createOscillator();
   const gain = context.createGain();
@@ -34,7 +55,7 @@ const SOUNDS = {
 };
 
 export function play(name) {
-  if (muted || !SOUNDS[name]) return;
+  if (volumes.sfx === 0 || !SOUNDS[name]) return;
   try {
     context ??= new (window.AudioContext || window.webkitAudioContext)();
     if (context.state === 'suspended') context.resume(); // phones start audio suspended until a tap

@@ -165,3 +165,7 @@ header h2 { margin: 0; }
 .star { color: rgba(255, 255, 255, 0.25); }
 .star.filled { color: var(--star); }
 .big { font-size: 4rem; font-weight: 700; margin: 0; }
+
+/* Settings volume sliders */
+.volume { display: flex; flex-direction: column; gap: 6px; margin: 12px 0; }
+.volume input { width: 100%; accent-color: var(--accent); }

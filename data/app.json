@@ -58,6 +58,8 @@
       "assets/cast/hand-open-1.png",
       "assets/cast/hand-open-2.png"
     ],
-    "workingHand": "assets/cast/hand-working.png"
-  }
+    "workingHand": "assets/cast/hand-working-plain.png",
+    "drillHand": "assets/cast/hand-working.png"
+  },
+  "music": ""
 }

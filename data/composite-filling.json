@@ -222,6 +222,7 @@
       "pick": null,
       "result": {
         "scene": "finished-polished",
+        "hand": "drill",
         "message": "The dentist finishes and polishes.",
         "durationMs": 2000
       }

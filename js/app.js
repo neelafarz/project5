@@ -3,6 +3,7 @@
 
 import { ProcedureView } from './procedureView.js';
 import { SortView } from './sortView.js';
+import { getVolume, setVolume, setMusic, play } from './sound.js';
 
 // Engines the shell can start, each with the screen it draws into.
 // A mode whose engine is missing here reads "coming soon".
@@ -62,6 +63,17 @@ function fillSharedText() {
 }
 
 const isPlayable = (mode) => mode.built && ENGINES[mode.engine];
+
+// Settings sliders: each <input data-volume="sfx|music"> shows and sets that volume.
+function buildVolumeSliders() {
+  for (const input of document.querySelectorAll('[data-volume]')) {
+    const kind = input.dataset.volume;
+    input.value = Math.round(getVolume(kind) * 100);
+    input.addEventListener('input', () => setVolume(kind, input.value / 100));
+    // Let go of the effects slider and hear a sample at the new level.
+    if (kind === 'sfx') input.addEventListener('change', () => play('correct'));
+  }
+}
 
 function buildCredits() {
   const list = $('[data-slot="credits"]');
@@ -166,6 +178,8 @@ async function init() {
   fillSharedText();
   buildSelection();
   buildCredits();
+  buildVolumeSliders();
+  setMusic(app.music);
   buildGuide().catch(() => {}); // the guide is optional; the game does not depend on it
   show('opening');
 }
