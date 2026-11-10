@@ -82,12 +82,12 @@
     await wait(1100);
     check('countdown runs', /^Time: (9|8) seconds$/.test(timerText()), `(shows "${timerText()}")`);
 
-    // The dentist's skin tone is opposite the patient's (patient 1 pairs with hand 2, patient 2 with hand 1),
-    // and the patient wears sunglasses.
-    const patientNo = $('.patient').src.match(/patient-(\d)/)[1];
-    const handNo = $('[data-slot="hand"]').src.match(/hand-open-(\d)/)[1];
-    check('dentist skin is opposite the patient', patientNo !== handNo, `(patient ${patientNo}, hand ${handNo})`);
-    check('the patient wears sunglasses', !$('.glasses').hidden && $('.glasses').complete && $('.glasses').naturalWidth > 0);
+    // The dentist's skin tone is opposite the patient's. Skin tones come from data/app.json.
+    const fileName = (el) => el.src.split('/').pop();
+    const skinOf = (list, name) => list.find((entry) => entry.image.endsWith(name))?.skin;
+    const patientSkin = skinOf(app.cast.patients, fileName($('.patient')));
+    const handSkin = skinOf(app.cast.openHands, fileName($('[data-slot="hand"]')));
+    check('dentist skin is opposite the patient', patientSkin && handSkin && patientSkin !== handSkin, `(patient ${patientSkin}, hand ${handSkin})`);
 
     // Leaving the tab pauses the round, so the countdown cannot run out unseen.
     Object.defineProperty(doc, 'hidden', { value: true, configurable: true });

@@ -6,6 +6,14 @@ import { timeLabel } from './pickClock.js';
 import { flyTo } from './fly.js';
 import { play } from './sound.js';
 
+// Returns 0, 1, 2, ... in turn (wrapping at `count`), remembering the position in localStorage.
+function nextPatientIndex(count) {
+  let turn = 0;
+  try { turn = Number(localStorage.getItem('patient-turn')) || 0; } catch { /* storage unavailable */ }
+  try { localStorage.setItem('patient-turn', String(turn + 1)); } catch { /* ignore */ }
+  return turn % count;
+}
+
 export class ProcedureView {
   // `screen` is the <section data-screen="game"> element; `onFinish(score)` is called at the end.
   // `cast` (from data/app.json) lists the patients and hands shared by every procedure.
@@ -13,7 +21,7 @@ export class ProcedureView {
     this.screen = screen;
     this.data = data;
     this.onFinish = onFinish;
-    this.cast = { patients: [], openHands: [], workingHand: '', drillHand: '', glasses: '', ...cast };
+    this.cast = { patients: [], openHands: [], workingHand: '', drillHand: '', ...cast };
     this.run = new ProcedureRun(data);
     this.timeouts = [];
     this.frame = null;
@@ -87,19 +95,21 @@ export class ProcedureView {
     });
   }
 
-  // Each run picks a patient at random (provisional). The dentist's hand is the opposite skin tone:
-  // the lists are ordered so that patient N pairs with the next hand in the list (wrapping around).
+  // Patients take turns in list order, one per run, and the count is remembered between visits.
+  // The dentist's hand is the opposite skin tone to the patient's (a random one if several match).
+  // Each patient and hand is { image, skin } (see data/app.json).
   #chooseCast() {
-    const { patients, openHands, glasses } = this.cast;
-    const patientIndex = Math.floor(Math.random() * patients.length);
-    this.openHand = openHands.length ? openHands[(patientIndex + 1) % openHands.length] : '';
+    const { patients, openHands } = this.cast;
     const patient = this.screen.querySelector('.patient');
     patient.hidden = patients.length === 0;
-    if (!patient.hidden) patient.src = patients[patientIndex];
-    // Sunglasses go over the patient's face (they share the patient's canvas and size).
-    const shades = this.screen.querySelector('.glasses');
-    shades.hidden = patient.hidden || !glasses;
-    if (!shades.hidden) shades.src = glasses;
+    this.openHand = '';
+    if (!patient.hidden) {
+      const chosen = patients[nextPatientIndex(patients.length)];
+      patient.src = chosen.image;
+      const opposite = openHands.filter((hand) => hand.skin !== chosen.skin);
+      const candidates = opposite.length ? opposite : openHands; // no opposite tone available: any hand
+      this.openHand = candidates.length ? candidates[Math.floor(Math.random() * candidates.length)].image : '';
+    }
     this.#setHand('open');
   }
 
