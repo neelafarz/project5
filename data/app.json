@@ -76,12 +76,7 @@
     ],
     "openHands": [
       {
-        "image": "assets/cast/hand-open-1.png",
-        "skin": "light"
-      },
-      {
-        "image": "assets/cast/hand-open-2.png",
-        "skin": "dark"
+        "image": "assets/cast/hand-open.png"
       }
     ],
     "workingHand": "assets/cast/hand-working-plain.png",

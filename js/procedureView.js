@@ -97,7 +97,8 @@ export class ProcedureView {
 
   // Patients take turns in list order, one per run, and the count is remembered between visits.
   // The dentist's hand is the opposite skin tone to the patient's (a random one if several match).
-  // Each patient and hand is { image, skin } (see data/app.json).
+  // Each patient and hand is { image, skin } (see data/app.json). A hand with no skin listed (a glove with
+  // no skin showing) suits every patient.
   #chooseCast() {
     const { patients, openHands } = this.cast;
     const patient = this.screen.querySelector('.patient');
