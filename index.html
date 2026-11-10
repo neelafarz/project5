@@ -4,6 +4,11 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Going Chairside</title>
+  <meta name="theme-color" content="#f5f1f7">
+  <!-- Nunito (open font license, credited in Settings) for body text; the logo keeps its own chunky lettering. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -22,7 +27,7 @@
 
     <!-- Frame 1: opening screen -->
     <section data-screen="opening">
-      <img class="logo" src="assets/first-logo-rendition.png" alt="Going Chairside">
+      <img class="logo" src="assets/logo.png" alt="Going Chairside">
       <button data-goto="selection">Begin</button>
       <button data-goto="procedures">Procedures</button>
       <button data-goto="settings">Settings</button>
@@ -70,6 +75,7 @@
         <button data-goto="selection" aria-label="Back to selection">&larr;</button>
         <h2 data-slot="mode-title"></h2>
       </header>
+      <img class="mascot" src="assets/tooth-mascot.png" alt="">
       <p class="disclaimer-box" data-text="disclaimer"></p>
       <p data-slot="instructions"></p>
       <p class="note" data-slot="intro-note"></p>
@@ -123,6 +129,7 @@
 
     <!-- Frame 4: end screen -->
     <section data-screen="end" hidden>
+      <img class="mascot" src="assets/tooth-mascot.png" alt="">
       <div class="stars" data-slot="stars" aria-hidden="true"></div>
       <p class="big"><span data-slot="score"></span>%</p>
       <p>Accuracy</p>

@@ -1,15 +1,24 @@
-/* Placeholder styling: layout follows the Developer's frames; the look (color,
-   type, art) is not final and will be redesigned. */
+/* Soft, warm "neumorphic" look taken from the logo: raised lavender shapes lit from the upper left,
+   pressed-in (inset) shapes for text panels, pill-shaped buttons. Layout rules are unchanged. */
 
 :root {
-  --bg: #343e47;
-  --text: #ffffff;
-  --panel: rgba(255, 255, 255, 0.12);
-  --tray: #7ee8ee;
-  --accent: #c8a2c8;
-  --star: #f5a623;
-  --wrong: #e5484d;
+  /* palette from the Developer's finalized logo */
+  --bg: #f5f1f7;          /* lavender-white page */
+  --raised: #e9deed;      /* soft lavender cards and buttons */
+  --accent: #c6a3ca;      /* dusty mauve: primary buttons, slider */
+  --accent-2: #edbeed;    /* pastel pink */
+  --icy: #d5edf3;         /* icy blue: scene and sort bins */
+  --text: #49364f;        /* deep plum */
+  --star: #f2b44e;
+  --wrong: #d9546e;
+  /* neumorphic shadows: a lavender shadow below right, a white highlight above left */
+  --shadow-dark: rgba(146, 116, 163, 0.38);
+  --shadow-light: rgba(255, 255, 255, 0.95);
+  --raise: 6px 6px 14px var(--shadow-dark), -6px -6px 14px var(--shadow-light);
+  --raise-small: 3px 3px 8px var(--shadow-dark), -3px -3px 8px var(--shadow-light);
+  --press: inset 4px 4px 9px var(--shadow-dark), inset -4px -4px 9px var(--shadow-light);
   --max-width: 480px;
+  --font-body: 'Nunito', ui-rounded, 'SF Pro Rounded', system-ui, sans-serif;
 }
 
 * { box-sizing: border-box; }
@@ -18,7 +27,8 @@ body {
   margin: 0;
   background: var(--bg);
   color: var(--text);
-  font-family: system-ui, sans-serif;
+  font-family: var(--font-body);
+  line-height: 1.4;
 }
 
 /* One portrait column, centered on larger screens. */
@@ -42,29 +52,48 @@ section[data-screen] {
   padding: 16px;
 }
 
-button { font: inherit; min-height: 44px; padding: 8px 16px; }
-button:disabled { opacity: 0.5; }
+/* Pill buttons rise off the page and sink when pressed. */
+button {
+  font: inherit; font-weight: 700; color: var(--text);
+  min-height: 48px; padding: 8px 24px;
+  border: 0; border-radius: 999px; background: var(--raised); box-shadow: var(--raise);
+  cursor: pointer; transition: box-shadow 0.12s, transform 0.12s;
+}
+button:active:not(:disabled) { box-shadow: var(--press); transform: scale(0.98); }
+button:disabled { opacity: 0.45; box-shadow: none; cursor: default; }
+/* The main button of a screen has a stronger mauve fill so it clearly looks tappable. */
+[data-screen="opening"] [data-goto="selection"], [data-action="begin-game"], [data-action="again"], [data-action="resume"] {
+  background: var(--accent); font-size: 1.1rem;
+}
+/* Round icon buttons in headers (back, home, pause). */
+header button { min-width: 48px; padding: 8px; }
 header { display: flex; align-items: center; gap: 12px; }
 header h2 { margin: 0; }
-.disclaimer { font-size: 0.8rem; opacity: 0.85; margin: auto 0 0; }
-.disclaimer-box { margin: 0; padding: 12px; border: 1px solid currentColor; border-radius: 8px; font-size: 0.85rem; }
+h2, h3 { font-weight: 800; }
+.disclaimer { font-size: 0.8rem; opacity: 0.8; margin: auto 0 0; text-align: center; }
+/* Text panels are pressed into the page. */
+.disclaimer-box { margin: 0; padding: 14px 18px; border-radius: 22px; background: var(--bg); box-shadow: var(--press); font-size: 0.85rem; }
 
 /* ---- Opening ---- */
-.logo { width: 70%; max-width: 280px; margin: 24px auto; display: block; border-radius: 12px; }
+.logo { width: 88%; max-width: 380px; margin: 32px auto 24px; display: block; }
+[data-screen="opening"] { gap: 16px; }
+[data-screen="opening"] button { width: 100%; max-width: 320px; align-self: center; }
+/* The tooth from the logo is the game's mascot on the intro and end screens. */
+.mascot { width: 88px; height: auto; align-self: center; filter: drop-shadow(3px 4px 6px var(--shadow-dark)); }
 
 /* ---- Selection ---- */
 [data-screen="selection"] header { justify-content: space-between; }
-.overall { margin: 0; }
+.overall { margin: 0; padding: 8px 18px; border-radius: 999px; box-shadow: var(--press); }
 [data-slot="modes"] { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-.tile { min-height: 96px; font-size: 1.1rem; }
+.tile { min-height: 96px; font-size: 1.1rem; border-radius: 26px; padding: 12px; }
 
 /* ---- Procedures guide ---- */
 [data-slot="guide"] li { margin-bottom: 4px; }
 
 /* ---- Game (hooks used by js/procedureView.js) ---- */
 [data-screen="game"] header { justify-content: space-between; }
-[data-slot="timer"] { margin: 0; font-size: 1.3rem; font-weight: 700; text-align: center; flex: 1; }
-.hint-box { min-height: 3em; margin: 0; padding: 8px 0; text-align: center; border-block: 1px solid var(--panel); }
+[data-slot="timer"] { margin: 0; font-size: 1.2rem; font-weight: 800; text-align: center; flex: 1; }
+.hint-box { min-height: 3em; margin: 0; padding: 10px 16px; text-align: center; border-radius: 22px; box-shadow: var(--press); }
 
 [data-slot="scene"] { position: relative; flex: 1; min-height: 0; } /* the scene gives way so the tray always fits */
 /* The scene: patient at the top center, the dentist's hand coming in from the left.
@@ -78,6 +107,7 @@ header h2 { margin: 0; }
   --hand-top: 68%; /* the open hand waits below the mouth, so the mouth stays visible */
   --working-top: 57%; /* the working hand moves up to the mouth */
   overflow: hidden;
+  border-radius: 28px; background: var(--icy); box-shadow: var(--press); /* a soft icy-blue window onto the room */
 }
 .patient {
   position: absolute; left: 50%; top: var(--patient-top); translate: -50% 0;
@@ -89,7 +119,7 @@ header h2 { margin: 0; }
 }
 .hand.working { top: var(--working-top); }
 .scene-art { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; }
-.scene-label { position: absolute; right: 0; top: 0; margin: 0; font-size: 0.7rem; opacity: 0.6; }
+.scene-label { position: absolute; right: 12px; top: 8px; margin: 0; font-size: 0.7rem; opacity: 0.5; }
 
 /* The tray: the Canva tray image (credited in research.md and Settings), with the tools lying on it. */
 [data-slot="tray"] {
@@ -99,13 +129,14 @@ header h2 { margin: 0; }
   /* keeps the tools inside the tray's inner surface, clear of the rim */
   padding: 8% 7%;
   background: url("assets/tray/tray-landscape.png") center / 100% 100% no-repeat;
-  filter: drop-shadow(0 8px 14px rgba(0, 0, 0, 0.4));
+  filter: drop-shadow(5px 8px 12px var(--shadow-dark));
 }
 .tool {
   display: flex; align-items: center; justify-content: center;
   height: 100px; padding: 2px;
   border: 0; border-radius: 12px; background: none;
-  color: #1c2a33; font-size: 0.65rem; text-align: center;
+  color: var(--text); font-size: 0.65rem; text-align: center;
+  box-shadow: none; /* tools lie on the tray; they are not raised pills */
 }
 .tool img {
   width: 100%; height: 100%; object-fit: contain;
@@ -120,8 +151,9 @@ header h2 { margin: 0; }
 .tool.positioned { position: absolute; translate: -50% -50%; width: auto; padding: 0; }
 .tool.positioned img { height: 100%; width: auto; }
 .tool.positioned::after { content: ''; position: absolute; inset: -6px; } /* a larger tap target */
+.tool:active:not(:disabled) { box-shadow: none; transform: none; }
 .tool:active:not(:disabled) img { transform: scale(0.95); }
-.tool:disabled { opacity: 0.8; }
+.tool:disabled { opacity: 0.85; }
 .tool.hint img { filter: drop-shadow(0 0 5px #fff) drop-shadow(0 0 9px var(--accent)); }
 .tool.wrong { animation: shake 0.3s; }
 .tool.wrong img { filter: drop-shadow(0 0 6px var(--wrong)); }
@@ -130,13 +162,16 @@ header h2 { margin: 0; }
 [data-slot="popup"], [data-slot="pause"] {
   position: fixed; inset: auto 16px 16px;
   max-width: calc(var(--max-width) - 32px); margin: 0 auto;
-  padding: 16px; border-radius: 12px; background: #fff; color: #1c2a33;
+  padding: 20px; border-radius: 28px; background: var(--raised); color: var(--text); box-shadow: var(--raise);
 }
+[data-slot="popup"] button { margin-top: 8px; background: var(--accent); }
 /* The pause panel covers the whole screen so nothing underneath can be tapped. */
 [data-slot="pause"] {
-  inset: 0; max-width: none; border-radius: 0; background: rgba(20, 26, 31, 0.95); color: var(--text);
-  display: flex; flex-direction: column; justify-content: center; gap: 12px; padding: 32px;
+  inset: 0; max-width: none; border-radius: 0; background: rgba(245, 241, 247, 0.96); color: var(--text); box-shadow: none;
+  align-items: center; text-align: center;
+  display: flex; flex-direction: column; justify-content: center; gap: 16px; padding: 32px;
 }
+[data-slot="pause"] button { width: 100%; max-width: 280px; }
 .flying { position: fixed; z-index: 10; pointer-events: none; height: auto; }
 
 /* ---- Sort (hooks used by js/sortView.js) ---- */
@@ -144,29 +179,35 @@ header h2 { margin: 0; }
 .count { margin: 0; text-align: right; font-weight: 700; }
 .item {
   flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px;
-  min-height: 0; border-radius: 12px; font-size: 1.1rem;
+  min-height: 0; border-radius: 28px; font-size: 1.1rem; font-weight: 700;
+  background: var(--raised); box-shadow: var(--raise);
 }
 .item img { max-height: 120px; max-width: 60%; object-fit: contain; }
-.item.wrong { background: rgba(229, 72, 77, 0.45); outline: 2px solid var(--wrong); }
+.item.wrong { background: #f3c9d2; outline: 3px solid var(--wrong); }
 .item.moved { visibility: hidden; }
 [data-slot="bins"] { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
 .bin {
   display: flex; flex-direction: column; align-items: center; gap: 6px;
-  min-height: 120px; padding: 10px; border: 2px solid transparent; border-radius: 12px;
-  background: var(--tray); color: #1c2a33; font-weight: 600;
+  min-height: 120px; padding: 12px; border: 3px solid transparent; border-radius: 28px;
+  background: var(--icy); color: var(--text); font-weight: 700;
 }
 .bin img { max-height: 64px; object-fit: contain; }
-.bin.correct { border-color: var(--accent); background: #fff; }
+.bin.correct { border-color: var(--accent); background: var(--accent-2); }
 .note { font-size: 0.8rem; opacity: 0.85; margin: 0; }
 
 /* ---- End ---- */
 [data-screen="end"] { align-items: center; text-align: center; }
+[data-screen="end"] p { margin: 0; }
 [data-screen="end"] button { width: 100%; max-width: 320px; }
 .stars { font-size: 2.2rem; letter-spacing: 6px; margin-top: 16px; }
-.star { color: rgba(255, 255, 255, 0.25); }
+.star { color: #dccfe2; text-shadow: 1px 1px 2px var(--shadow-light); }
 .star.filled { color: var(--star); }
-.big { font-size: 4rem; font-weight: 700; margin: 0; }
+.big { font-size: 4rem; font-weight: 800; margin: 0; }
 
 /* Settings volume sliders */
 .volume { display: flex; flex-direction: column; gap: 6px; margin: 12px 0; }
-.volume input { width: 100%; accent-color: var(--accent); }
+/* Sliders: a pressed-in groove with a raised mauve knob. */
+.volume { font-weight: 700; }
+.volume input { -webkit-appearance: none; appearance: none; width: 100%; height: 14px; border-radius: 999px; background: var(--bg); box-shadow: var(--press); }
+.volume input::-webkit-slider-thumb { -webkit-appearance: none; width: 30px; height: 30px; border-radius: 50%; background: var(--accent); box-shadow: var(--raise-small); border: 0; }
+.volume input::-moz-range-thumb { width: 30px; height: 30px; border-radius: 50%; background: var(--accent); box-shadow: var(--raise-small); border: 0; }
