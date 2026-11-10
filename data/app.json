@@ -50,7 +50,7 @@
     "Game created by Neela Farzin and Claude Code",
     "Tool and dentist hand artwork: AI-generated",
     "Patients, tray and logo: made in Canva",
-    "Music: \"Autumn Morning\" by sergequadrado (Freesound)",
+    "Music: \"Dental Clinic\" by the_mountain (Pixabay)",
     "Sound effects: generated in the browser"
   ],
   "cast": {
@@ -85,5 +85,5 @@
     "workingHand": "assets/cast/hand-working-plain.png",
     "drillHand": "assets/cast/hand-working.png"
   },
-  "music": "assets/music/autumn-morning.m4a"
+  "music": "assets/music/dental-clinic.m4a"
 }
