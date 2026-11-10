@@ -1,272 +1,281 @@
+commit 0435b6399b87eaa2674f8c08deaea63e85e34b14
+Author: neelafarz
+Date:   2026-11-09 22:20:38 -0600
+
+Update commit log
+
+Co-Authored-By: Claude Sonnet 5.5 <noreply@anthropic.com>
+----------------------------------------
 commit a7881664999ef280e81eb1b63df710688a6b2756
-Author: neelafarz <npf345@my.utexas.edu>
-Date:   Mon Nov 9 22:20:38 2026 -0600
+Author: neelafarz
+Date:   2026-11-09 22:20:38 -0600
 
-    Add transcript of the game-building session
-    
-    Co-Authored-By: Claude Sonnet 5.5 <noreply@anthropic.com>
+Add transcript of the game-building session
 
+Co-Authored-By: Claude Sonnet 5.5 <noreply@anthropic.com>
+----------------------------------------
 commit 543e02c7bd7c030308b6124e2a16bcb8a2424c72
-Author: neelafarz <npf345@my.utexas.edu>
-Date:   Mon Nov 9 22:18:15 2026 -0600
+Author: neelafarz
+Date:   2026-11-09 22:18:15 -0600
 
-    Use the Dental Clinic soundtrack (2.5 minutes)
-    
-    Co-Authored-By: Claude Sonnet 5.5 <noreply@anthropic.com>
+Use the Dental Clinic soundtrack (2.5 minutes)
 
+Co-Authored-By: Claude Sonnet 5.5 <noreply@anthropic.com>
+----------------------------------------
 commit 1e302d3f01522f2fd6bf6c6e0116137bf3df1dbe
-Author: neelafarz <npf345@my.utexas.edu>
-Date:   Mon Nov 9 22:04:34 2026 -0600
+Author: neelafarz
+Date:   2026-11-09 22:04:34 -0600
 
-    Credit the game's creators in Settings
-    
-    Co-Authored-By: Claude Sonnet 5.5 <noreply@anthropic.com>
+Credit the game's creators in Settings
 
+Co-Authored-By: Claude Sonnet 5.5 <noreply@anthropic.com>
+----------------------------------------
 commit 7653efac4bd20e0669b09c7a66dbdf43d51d07ae
-Author: neelafarz <npf345@my.utexas.edu>
-Date:   Mon Nov 9 22:04:22 2026 -0600
+Author: neelafarz
+Date:   2026-11-09 22:04:22 -0600
 
-    Let the soundtrack be a list of tracks that play in order
-    
-    Co-Authored-By: Claude Sonnet 5.5 <noreply@anthropic.com>
+Let the soundtrack be a list of tracks that play in order
 
+Co-Authored-By: Claude Sonnet 5.5 <noreply@anthropic.com>
+----------------------------------------
 commit e2a4b9878bd8a98c471dada9e6d38754d12a9592
-Author: neelafarz <npf345@my.utexas.edu>
-Date:   Mon Nov 9 21:58:13 2026 -0600
+Author: neelafarz
+Date:   2026-11-09 21:58:13 -0600
 
-    Shrink the placement instruments and rearrange the tray's right side
-    
-    Co-Authored-By: Claude Sonnet 5.5 <noreply@anthropic.com>
+Shrink the placement instruments and rearrange the tray's right side
 
+Co-Authored-By: Claude Sonnet 5.5 <noreply@anthropic.com>
+----------------------------------------
 commit 98fa422f570c9bdfb49ccd805448e366c8d82237
-Author: neelafarz <npf345@my.utexas.edu>
-Date:   Mon Nov 9 21:54:09 2026 -0600
+Author: neelafarz
+Date:   2026-11-09 21:54:09 -0600
 
-    Replace the soundtrack with Autumn Morning
-    
-    Co-Authored-By: Claude Sonnet 5.5 <noreply@anthropic.com>
+Replace the soundtrack with Autumn Morning
 
+Co-Authored-By: Claude Sonnet 5.5 <noreply@anthropic.com>
+----------------------------------------
 commit 9932605a99db4a0b46eac277adfa5b5eed1c00a2
-Author: neelafarz <npf345@my.utexas.edu>
-Date:   Mon Nov 9 21:51:15 2026 -0600
+Author: neelafarz
+Date:   2026-11-09 21:51:15 -0600
 
-    Swap matrix and etch slots, fix tilted tools flying sideways, pause music with the game, play music app-wide
-    
-    Co-Authored-By: Claude Sonnet 5.5 <noreply@anthropic.com>
+Swap matrix and etch slots, fix tilted tools flying sideways, pause music with the game, play music app-wide
 
+Co-Authored-By: Claude Sonnet 5.5 <noreply@anthropic.com>
+----------------------------------------
 commit dd1cf3c859cd2899a7e7819f795721448ae16f45
-Author: neelafarz <npf345@my.utexas.edu>
-Date:   Mon Nov 9 21:48:05 2026 -0600
+Author: neelafarz
+Date:   2026-11-09 21:48:05 -0600
 
-    Add four Canva patients that take turns, with opposite-skin hands
-    
-    Co-Authored-By: Claude Sonnet 5.5 <noreply@anthropic.com>
+Add four Canva patients that take turns, with opposite-skin hands
 
+Co-Authored-By: Claude Sonnet 5.5 <noreply@anthropic.com>
+----------------------------------------
 commit dcc62874e64a58593e962acaa740347784200b23
-Author: neelafarz <npf345@my.utexas.edu>
-Date:   Mon Nov 9 21:22:47 2026 -0600
+Author: neelafarz
+Date:   2026-11-09 21:22:47 -0600
 
-    Pair opposite skin tones, add sunglasses, stop music after a round, pause on hidden tab
-    
-    Co-Authored-By: Claude Sonnet 5.5 <noreply@anthropic.com>
+Pair opposite skin tones, add sunglasses, stop music after a round, pause on hidden tab
 
+Co-Authored-By: Claude Sonnet 5.5 <noreply@anthropic.com>
+----------------------------------------
 commit b2da04cae4177747098442a063cc5b16b37df38f
-Author: neelafarz <npf345@my.utexas.edu>
-Date:   Mon Nov 9 21:17:21 2026 -0600
+Author: neelafarz
+Date:   2026-11-09 21:17:21 -0600
 
-    Expand Settings credits and record music and art sources
-    
-    Co-Authored-By: Claude Sonnet 5.5 <noreply@anthropic.com>
+Expand Settings credits and record music and art sources
 
+Co-Authored-By: Claude Sonnet 5.5 <noreply@anthropic.com>
+----------------------------------------
 commit 2dd7c4fd56bb35c803b9ffbcfdf26b88b99b0bf3
-Author: neelafarz <npf345@my.utexas.edu>
-Date:   Mon Nov 9 21:16:29 2026 -0600
+Author: neelafarz
+Date:   2026-11-09 21:16:29 -0600
 
-    Add documentary loop soundtrack and credit
-    
-    Co-Authored-By: Claude Sonnet 5.5 <noreply@anthropic.com>
+Add documentary loop soundtrack and credit
 
+Co-Authored-By: Claude Sonnet 5.5 <noreply@anthropic.com>
+----------------------------------------
 commit c3f554dea603de9870407a23ec166c8029cf0d05
-Author: neelafarz <npf345@my.utexas.edu>
-Date:   Mon Nov 9 21:15:43 2026 -0600
+Author: neelafarz
+Date:   2026-11-09 21:15:43 -0600
 
-    Add no-drill working hand and Settings volume sliders for effects and music
-    
-    Co-Authored-By: Claude Sonnet 5.5 <noreply@anthropic.com>
+Add no-drill working hand and Settings volume sliders for effects and music
 
+Co-Authored-By: Claude Sonnet 5.5 <noreply@anthropic.com>
+----------------------------------------
 commit 6f1e4b8bd2c54b72fefb52773e3ef2d4b01bdad3
-Author: neelafarz <npf345@my.utexas.edu>
-Date:   Mon Nov 9 21:05:00 2026 -0600
+Author: neelafarz
+Date:   2026-11-09 21:05:00 -0600
 
-    Add synthesized sounds for correct, wrong and timeout
-    
-    Co-Authored-By: Claude Sonnet 5.5 <noreply@anthropic.com>
+Add synthesized sounds for correct, wrong and timeout
 
+Co-Authored-By: Claude Sonnet 5.5 <noreply@anthropic.com>
+----------------------------------------
 commit 79696abe3205ec88c64fafe14cbe5697df12c1fc
-Author: neelafarz <npf345@my.utexas.edu>
-Date:   Mon Nov 9 21:03:20 2026 -0600
+Author: neelafarz
+Date:   2026-11-09 21:03:20 -0600
 
-    Lower the working hand so the instrument tip lands in the mouth
-    
-    Co-Authored-By: Claude Sonnet 5.5 <noreply@anthropic.com>
+Lower the working hand so the instrument tip lands in the mouth
 
+Co-Authored-By: Claude Sonnet 5.5 <noreply@anthropic.com>
+----------------------------------------
 commit ad3c31be0d23960949b54b47b3638b32d14f6098
-Author: neelafarz <npf345@my.utexas.edu>
-Date:   Mon Nov 9 18:27:12 2026 -0600
+Author: neelafarz
+Date:   2026-11-09 18:27:12 -0600
 
-    Make the scene robust on short windows and against stale caches
-    
-    Size the patient and hands from the scene's own height and cap the tray at
-    40% of the window height, so a short browser window shrinks the people
-    instead of cropping them. Data files are always revalidated so cached code
-    never meets stale data, and the scene no longer crashes if the cast is
-    missing. The smoke test now shows progress and fails fast instead of
-    hanging.
-    
-    Co-Authored-By: Claude Sonnet 5.5 <noreply@anthropic.com>
+Make the scene robust on short windows and against stale caches
 
+Size the patient and hands from the scene's own height and cap the tray at
+40% of the window height, so a short browser window shrinks the people
+instead of cropping them. Data files are always revalidated so cached code
+never meets stale data, and the scene no longer crashes if the cast is
+missing. The smoke test now shows progress and fails fast instead of
+hanging.
+
+Co-Authored-By: Claude Sonnet 5.5 <noreply@anthropic.com>
+----------------------------------------
 commit dae5c546d347c73f2685375312189f07a19b0b8e
-Author: neelafarz <npf345@my.utexas.edu>
-Date:   Mon Nov 9 18:10:16 2026 -0600
+Author: neelafarz
+Date:   2026-11-09 18:10:16 -0600
 
-    Add patient and dentist hands to the procedure scene
-    
-    Each run picks one of two patients and one of two open hands. The open
-    hand waits below the mouth for a tool, and the dentist switches to the
-    working hand at the mouth while working, then back at the next step.
-    Cast images are trimmed and listed in data/app.json. Smoke test now checks
-    the hand swap and that the patient image loads.
-    
-    Co-Authored-By: Claude Sonnet 5.5 <noreply@anthropic.com>
+Add patient and dentist hands to the procedure scene
 
+Each run picks one of two patients and one of two open hands. The open
+hand waits below the mouth for a tool, and the dentist switches to the
+working hand at the mouth while working, then back at the next step.
+Cast images are trimmed and listed in data/app.json. Smoke test now checks
+the hand swap and that the patient image loads.
+
+Co-Authored-By: Claude Sonnet 5.5 <noreply@anthropic.com>
+----------------------------------------
 commit b7ba80b3300a38a6c5dd0386533e999c5d43bad8
-Author: neelafarz <npf345@my.utexas.edu>
-Date:   Mon Nov 9 17:52:31 2026 -0600
+Author: neelafarz
+Date:   2026-11-09 17:52:31 -0600
 
-    Use the Canva tray with tools placed from layout data
-    
-    The tray is the Developer's Canva image, kept unchanged and used as a
-    trimmed copy rotated to horizontal. Each tool's position on the tray
-    (center, length, tilt) is now data in the procedure file, with a plain grid
-    as the fallback. The tool-fly animation keeps a tool's size and tilt.
-    Settings shows a Canva credit, and research.md records the credit and the
-    license questions still to verify.
-    
-    Co-Authored-By: Claude Sonnet 5.5 <noreply@anthropic.com>
+Use the Canva tray with tools placed from layout data
 
+The tray is the Developer's Canva image, kept unchanged and used as a
+trimmed copy rotated to horizontal. Each tool's position on the tray
+(center, length, tilt) is now data in the procedure file, with a plain grid
+as the fallback. The tool-fly animation keeps a tool's size and tilt.
+Settings shows a Canva credit, and research.md records the credit and the
+license questions still to verify.
+
+Co-Authored-By: Claude Sonnet 5.5 <noreply@anthropic.com>
+----------------------------------------
 commit 05600f5f29a76013c5a3d364d003fe0220f6cddb
-Author: neelafarz <npf345@my.utexas.edu>
-Date:   Mon Nov 9 17:45:52 2026 -0600
+Author: neelafarz
+Date:   2026-11-09 17:45:52 -0600
 
-    Show tools on a realistic captionless tray
-    
-    Trim the empty padding off all eight tool images so the tools fill their
-    space, and draw the tray as a rimmed, textured surface with the tools
-    lying on it and no visible words. Names stay as aria-labels, and a missing
-    image falls back to its name.
-    
-    Co-Authored-By: Claude Sonnet 5.5 <noreply@anthropic.com>
+Show tools on a realistic captionless tray
 
+Trim the empty padding off all eight tool images so the tools fill their
+space, and draw the tray as a rimmed, textured surface with the tools
+lying on it and no visible words. Names stay as aria-labels, and a missing
+image falls back to its name.
+
+Co-Authored-By: Claude Sonnet 5.5 <noreply@anthropic.com>
+----------------------------------------
 commit ba83098ddfe0763c361592992b8af67aa813631e
-Author: neelafarz <npf345@my.utexas.edu>
-Date:   Mon Nov 9 17:39:48 2026 -0600
+Author: neelafarz
+Date:   2026-11-09 17:39:48 -0600
 
-    Add composite placement instrument image
-    
-    Completes the eight-tool set for the composite filling tray.
-    
-    Co-Authored-By: Claude Sonnet 5.5 <noreply@anthropic.com>
+Add composite placement instrument image
 
+Completes the eight-tool set for the composite filling tray.
+
+Co-Authored-By: Claude Sonnet 5.5 <noreply@anthropic.com>
+----------------------------------------
 commit d308379f3e631474c1f023012a1205b0ea71ccbe
-Author: neelafarz <npf345@my.utexas.edu>
-Date:   Mon Nov 9 17:27:25 2026 -0600
+Author: neelafarz
+Date:   2026-11-09 17:27:25 -0600
 
-    Add composite filling tool art and fit screens to the viewport
-    
-    Replace the first three tool images and add the other four from the
-    Developer's set (articulating paper, floss, etch, bond). The composite
-    placement instrument is still missing. Screens now fit the viewport and
-    scroll inside their section, with the scene giving way so the tray fits.
-    
-    Co-Authored-By: Claude Sonnet 5.5 <noreply@anthropic.com>
+Add composite filling tool art and fit screens to the viewport
 
+Replace the first three tool images and add the other four from the
+Developer's set (articulating paper, floss, etch, bond). The composite
+placement instrument is still missing. Screens now fit the viewport and
+scroll inside their section, with the scene giving way so the tray fits.
+
+Co-Authored-By: Claude Sonnet 5.5 <noreply@anthropic.com>
+----------------------------------------
 commit b944169b6bdb22caa7626993ee02e53399630d3c
-Author: neelafarz <npf345@my.utexas.edu>
-Date:   Mon Nov 9 17:22:10 2026 -0600
+Author: neelafarz
+Date:   2026-11-09 17:22:10 -0600
 
-    Update spec and research for screens, sort mode, and scope changes
-    
-    Spec now covers all six modes, both engines, the screen flow, and the
-    provisional choices awaiting Developer review. Research records the
-    extraction and sterilization-bin scope changes. Includes the Developer's
-    uncommitted edit to pitch.md.
-    
-    Co-Authored-By: Claude Sonnet 5.5 <noreply@anthropic.com>
+Update spec and research for screens, sort mode, and scope changes
 
+Spec now covers all six modes, both engines, the screen flow, and the
+provisional choices awaiting Developer review. Research records the
+extraction and sterilization-bin scope changes. Includes the Developer's
+uncommitted edit to pitch.md.
+
+Co-Authored-By: Claude Sonnet 5.5 <noreply@anthropic.com>
+----------------------------------------
 commit 21d6d7156db41c657be1966964a6532ff5f67c9f
-Author: neelafarz <npf345@my.utexas.edu>
-Date:   Mon Nov 9 17:22:10 2026 -0600
+Author: neelafarz
+Date:   2026-11-09 17:22:10 -0600
 
-    Add game framework with procedure and sort engines
-    
-    Plain HTML/CSS/JS shell with screens laid out from the Developer's frames:
-    opening, selection, game, sterilization sort, and end. Two engines share
-    the scoring rules, countdown with pause, and tool-fly animation. Engine
-    rules are DOM-free and covered by browser tests plus a full click-through
-    smoke test. Composite filling and sterilization content is draft data;
-    art is placeholder except three tool images.
-    
-    Co-Authored-By: Claude Sonnet 5.5 <noreply@anthropic.com>
+Add game framework with procedure and sort engines
 
+Plain HTML/CSS/JS shell with screens laid out from the Developer's frames:
+opening, selection, game, sterilization sort, and end. Two engines share
+the scoring rules, countdown with pause, and tool-fly animation. Engine
+rules are DOM-free and covered by browser tests plus a full click-through
+smoke test. Composite filling and sterilization content is draft data;
+art is placeholder except three tool images.
+
+Co-Authored-By: Claude Sonnet 5.5 <noreply@anthropic.com>
+----------------------------------------
 commit 083ead6257e23a47a5fc07e027fb051806a25723
-Author: neelafarz <npf345@my.utexas.edu>
-Date:   Sun Nov 1 22:49:34 2026 -0600
+Author: neelafarz
+Date:   2026-11-01 22:49:34 -0600
 
-    Add commit log export for weekly snapshot
-    
-    Git log with commit IDs, dates, and full messages, without code.
-    
-    Co-Authored-By: Claude Sonnet 5.5 <noreply@anthropic.com>
+Add commit log export for weekly snapshot
 
+Git log with commit IDs, dates, and full messages, without code.
+
+Co-Authored-By: Claude Sonnet 5.5 <noreply@anthropic.com>
+----------------------------------------
 commit d3a6e834b5a3b22922230d52f7d58d9f7c8783c9
-Author: neelafarz <npf345@my.utexas.edu>
-Date:   Sun Nov 1 22:49:34 2026 -0600
+Author: neelafarz
+Date:   2026-11-01 22:49:34 -0600
 
-    Add transcript of ideation and pitch session
-    
-    Co-Authored-By: Claude Sonnet 5.5 <noreply@anthropic.com>
+Add transcript of ideation and pitch session
 
+Co-Authored-By: Claude Sonnet 5.5 <noreply@anthropic.com>
+----------------------------------------
 commit 52da011297299dafb9c7836114e938c09026274c
-Author: neelafarz <npf345@my.utexas.edu>
-Date:   Sun Nov 1 22:47:08 2026 -0600
+Author: neelafarz
+Date:   2026-11-01 22:47:08 -0600
 
-    Add first logo rendition
-    
-    Lilac (#C8A2C8) logo with white tooth icon made in Canva. Credit and
-    usage-terms note are in research.md.
-    
-    Co-Authored-By: Claude Sonnet 5.5 <noreply@anthropic.com>
+Add first logo rendition
 
+Lilac (#C8A2C8) logo with white tooth icon made in Canva. Credit and
+usage-terms note are in research.md.
+
+Co-Authored-By: Claude Sonnet 5.5 <noreply@anthropic.com>
+----------------------------------------
 commit b40ad790bede1ede201165707d763e85ca7f38b1
-Author: neelafarz <npf345@my.utexas.edu>
-Date:   Sun Nov 1 22:47:08 2026 -0600
+Author: neelafarz
+Date:   2026-11-01 22:47:08 -0600
 
-    Add Going Chairside pitch draft
-    
-    Pitch with ideation (ideas explored, choice of the dental procedure study
-    game), trimmed pitch section, and risks. Full pre-trim draft saved in
-    reference/. Logo credit and Canva terms note added to research.md.
-    
-    Co-Authored-By: Claude Sonnet 5.5 <noreply@anthropic.com>
+Add Going Chairside pitch draft
 
+Pitch with ideation (ideas explored, choice of the dental procedure study
+game), trimmed pitch section, and risks. Full pre-trim draft saved in
+reference/. Logo credit and Canva terms note added to research.md.
+
+Co-Authored-By: Claude Sonnet 5.5 <noreply@anthropic.com>
+----------------------------------------
 commit 33986e2a80414f49fe14c2a735ab8bd0c1da0aa7
-Author: neelafarz <npf345@my.utexas.edu>
-Date:   Sun Nov 1 15:26:23 2026 -0600
+Author: neelafarz
+Date:   2026-11-01 15:26:23 -0600
 
-    Add original Project 5 template files
-    
-    Template documents (brief, plan, research, spec, AGENTS) and empty
-    breakdown, reference and transcripts folders, before any project work.
-    pitch.md is not included here because it was edited before the first commit.
-    
-    Co-Authored-By: Claude Sonnet 5.5 <noreply@anthropic.com>
+Add original Project 5 template files
+
+Template documents (brief, plan, research, spec, AGENTS) and empty
+breakdown, reference and transcripts folders, before any project work.
+pitch.md is not included here because it was edited before the first commit.
+
+Co-Authored-By: Claude Sonnet 5.5 <noreply@anthropic.com>
+----------------------------------------
