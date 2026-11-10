@@ -62,7 +62,8 @@
       "assets/cast/hand-open-2.png"
     ],
     "workingHand": "assets/cast/hand-working-plain.png",
-    "drillHand": "assets/cast/hand-working.png"
+    "drillHand": "assets/cast/hand-working.png",
+    "glasses": "assets/cast/sunglasses.svg"
   },
   "music": "assets/music/documentary-loop.m4a"
 }

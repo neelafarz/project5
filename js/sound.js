@@ -20,14 +20,21 @@ export function setVolume(kind, value) {
   if (kind === 'music' && music) music.volume = value;
 }
 
-// Sets the soundtrack (path from data/app.json; empty means none). Playback starts at the first tap,
-// because browsers block sound before the player interacts with the page.
+// Sets the soundtrack (path from data/app.json; empty means none).
 export function setMusic(path) {
   if (!path) return;
   music = new Audio(path);
   music.loop = true;
   music.volume = volumes.music;
-  document.addEventListener('pointerdown', () => { music.play().catch(() => {}); }, { once: true });
+}
+
+// Music plays only during a game: start it when a round begins, stop it when the round ends or is left.
+// (Starting from a tap is allowed by browsers.)
+export function startMusic() { music?.play().catch(() => {}); }
+export function stopMusic() {
+  if (!music) return;
+  music.pause();
+  music.currentTime = 0;
 }
 
 // One short tone: frequency in Hz, start offset and length in seconds, oscillator shape, peak volume.

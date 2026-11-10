@@ -3,7 +3,7 @@
 
 import { ProcedureView } from './procedureView.js';
 import { SortView } from './sortView.js';
-import { getVolume, setVolume, setMusic, play } from './sound.js';
+import { getVolume, setVolume, setMusic, startMusic, stopMusic, play } from './sound.js';
 
 // Engines the shell can start, each with the screen it draws into.
 // A mode whose engine is missing here reads "coming soon".
@@ -131,9 +131,11 @@ function beginGame() {
   view = new View(screens[screen], data, finishGame, app.cast);
   show(screen);
   view.start();
+  startMusic();
 }
 
 function leaveGame() {
+  stopMusic();
   view?.destroy();
   view = null;
   show('selection');
@@ -154,6 +156,7 @@ function finishGame(score, info = {}) {
     star.textContent = '★';
     return star;
   }));
+  stopMusic();
   view = null;
   show('end');
 }
@@ -183,4 +186,7 @@ async function init() {
   buildGuide().catch(() => {}); // the guide is optional; the game does not depend on it
   show('opening');
 }
+// A hidden tab stops animation frames but not the clock, so pause the round when the player leaves
+// the tab; otherwise the countdown would run out unseen.
+document.addEventListener('visibilitychange', () => { if (document.hidden) view?.pause(); });
 init();

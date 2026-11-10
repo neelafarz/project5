@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="392" height="712" viewBox="0 0 392 712">
+  <!-- Sunglasses drawn on the same 392x712 canvas as the patient images, so they line up exactly. -->
+  <g stroke="#1b2430" stroke-linecap="round" stroke-linejoin="round" fill="none">
+    <path d="M96 172 L52 182" stroke-width="7"/>
+    <path d="M296 172 L340 182" stroke-width="7"/>
+    <path d="M172 168 Q196 154 220 168" stroke-width="7"/>
+  </g>
+  <g fill="#1b2430" stroke="#3a4656" stroke-width="4">
+    <path d="M92 158 H176 Q180 158 180 164 V186 Q180 216 148 216 H122 Q92 216 90 186 Z"/>
+    <path d="M300 158 H216 Q212 158 212 164 V186 Q212 216 244 216 H270 Q300 216 302 186 Z"/>
+  </g>
+  <g fill="#fff" opacity="0.22">
+    <path d="M102 168 H138 L116 200 H102 Z"/>
+    <path d="M310 168 H274 L296 200 H310 Z" transform="translate(-8 0)"/>
+  </g>
+</svg>

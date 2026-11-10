@@ -13,7 +13,7 @@ export class ProcedureView {
     this.screen = screen;
     this.data = data;
     this.onFinish = onFinish;
-    this.cast = { patients: [], openHands: [], workingHand: '', drillHand: '', ...cast };
+    this.cast = { patients: [], openHands: [], workingHand: '', drillHand: '', glasses: '', ...cast };
     this.run = new ProcedureRun(data);
     this.timeouts = [];
     this.frame = null;
@@ -87,13 +87,19 @@ export class ProcedureView {
     });
   }
 
-  // Each run picks a patient and a dentist's hand at random (provisional).
+  // Each run picks a patient at random (provisional). The dentist's hand is the opposite skin tone:
+  // the lists are ordered so that patient N pairs with the next hand in the list (wrapping around).
   #chooseCast() {
-    const pick = (list) => list[Math.floor(Math.random() * list.length)] ?? '';
-    this.openHand = pick(this.cast.openHands);
+    const { patients, openHands, glasses } = this.cast;
+    const patientIndex = Math.floor(Math.random() * patients.length);
+    this.openHand = openHands.length ? openHands[(patientIndex + 1) % openHands.length] : '';
     const patient = this.screen.querySelector('.patient');
-    patient.hidden = this.cast.patients.length === 0;
-    if (!patient.hidden) patient.src = pick(this.cast.patients);
+    patient.hidden = patients.length === 0;
+    if (!patient.hidden) patient.src = patients[patientIndex];
+    // Sunglasses go over the patient's face (they share the patient's canvas and size).
+    const shades = this.screen.querySelector('.glasses');
+    shades.hidden = patient.hidden || !glasses;
+    if (!shades.hidden) shades.src = glasses;
     this.#setHand('open');
   }
 
