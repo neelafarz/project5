@@ -4,6 +4,7 @@
 import { ProcedureRun, FLY_MS, HINT_MS } from './procedureRun.js';
 import { timeLabel } from './pickClock.js';
 import { flyTo } from './fly.js';
+import { play } from './sound.js';
 
 export class ProcedureView {
   // `screen` is the <section data-screen="game"> element; `onFinish(score)` is called at the end.
@@ -132,6 +133,7 @@ export class ProcedureView {
   #onTap(toolId) {
     const outcome = this.run.tap(toolId, performance.now());
     if (outcome.ignored) return;
+    play(outcome.correct ? 'correct' : 'wrong');
     if (!outcome.correct) {
       const button = this.#toolButton(toolId);
       button.classList.remove('wrong');
@@ -187,6 +189,7 @@ export class ProcedureView {
   // Time ran out: point at the correct tool, then hand it over for the player.
   #onTimeout() {
     const { pick, hint } = this.run.step;
+    play('timeout');
     this.#setTrayEnabled(false);
     this.#toolButton(pick).classList.add('hint');
     this.#setMessage(hint || 'Time is up. This is the next tool.');

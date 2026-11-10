@@ -4,6 +4,7 @@
 import { SortRun, MOVE_MS } from './sortRun.js';
 import { timeLabel } from './pickClock.js';
 import { flyTo } from './fly.js';
+import { play } from './sound.js';
 
 const GENERIC_HINT = 'Not sure? Think about how this tool is cleaned.';
 
@@ -93,6 +94,7 @@ export class SortView {
   #onTap(binId) {
     const outcome = this.run.tap(binId, performance.now());
     if (outcome.ignored) return;
+    play(outcome.correct ? 'correct' : 'wrong');
     this.#setBinsEnabled(false);
     // A wrong pick is final: the item turns red and the round moves on.
     if (!outcome.correct) this.slot('item').classList.add('wrong');
@@ -104,6 +106,7 @@ export class SortView {
   // Time ran out: the game sorts the item into the correct bin for the player.
   #onTimeout() {
     const binId = this.run.item.bin;
+    play('timeout');
     this.#setBinsEnabled(false);
     this.#binButton(binId).classList.add('correct');
     this.#setMessage('Time is up. It goes here.');
