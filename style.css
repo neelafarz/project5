@@ -72,14 +72,15 @@ header h2 { margin: 0; }
    people instead of cropping them. Positions are variables so they can be tuned in one place. */
 [data-slot="scene"] {
   container-type: size;
-  --patient-height: 120cqh; /* the patient is taller than the scene; the bib is cropped */
+  --patient-height: 142cqh;
+  --patient-top: -10cqh; /* the patient is taller than the scene (the bib is cropped); lifted so the mouth stays at mid-height */
   --hand-width: 53cqh;
   --hand-top: 68%; /* the open hand waits below the mouth, so the mouth stays visible */
   --working-top: 57%; /* the working hand moves up to the mouth */
   overflow: hidden;
 }
 .patient {
-  position: absolute; left: 50%; top: 0; translate: -50% 0;
+  position: absolute; left: 50%; top: var(--patient-top); translate: -50% 0;
   height: var(--patient-height); width: auto;
 }
 .hand {
