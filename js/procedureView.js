@@ -140,7 +140,8 @@ export class ProcedureView {
 
   // Sets up the screen for the step the run just entered.
   #showStep() {
-    this.#setMessage('');
+    // While waiting for a pick the box tells the player what to do; a result step sets its own message.
+    this.#setMessage(this.run.phase === 'pick' ? (this.data.prompt ?? '') : '');
     if (this.run.phase === 'pick') {
       this.#setHand('open');
       this.#setTrayEnabled(true);

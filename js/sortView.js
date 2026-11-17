@@ -81,6 +81,7 @@ export class SortView {
     const img = document.createElement('img');
     img.src = item.image;
     img.alt = '';
+    if (item.scale) img.style.setProperty('--scale', item.scale); // an item drawn too large can be shrunk in its data
     img.onerror = () => img.remove(); // placeholder art: the label still shows
     const label = document.createElement('span');
     label.textContent = item.label;

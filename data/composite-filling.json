@@ -15,6 +15,7 @@
       "After the filling is placed and cured, the dentist polishes it and smooths it out if needed. Then the procedure is complete."
     ]
   },
+  "prompt": "Pass the correct next instrument to the dentist.",
   "startScene": "tooth-prepared-isolated",
   "tray": [
     {

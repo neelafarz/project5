@@ -43,7 +43,7 @@
     { "id": "low-speed-handpiece", "label": "Low-speed handpiece", "bin": "heat", "image": "assets/sort/low-speed-handpiece.png" },
     { "id": "prophy-angle", "label": "Prophy angle", "bin": "heat", "image": "assets/sort/prophy-angle.png" },
     { "id": "ultrasonic-scaler", "label": "Ultrasonic scaler", "bin": "heat", "image": "assets/sort/ultrasonic-scaler.png" },
-    { "id": "bur-block", "label": "Bur block", "bin": "ultrasonic", "image": "assets/sort/bur-block.png" },
+    { "id": "bur-block", "label": "Bur block", "bin": "ultrasonic", "image": "assets/sort/bur-block.png", "scale": 0.6 },
     { "id": "elevator", "label": "Elevator", "bin": "ultrasonic", "image": "assets/sort/elevator.png" },
     { "id": "dental-mirror", "label": "Dental mirror", "bin": "ultrasonic", "image": "assets/sort/dental-mirror.png" },
     { "id": "extraction-forceps", "label": "Extraction forceps", "bin": "ultrasonic", "image": "assets/sort/extraction-forceps.png" },

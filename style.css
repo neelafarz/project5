@@ -197,8 +197,14 @@ h2, h3 { font-weight: 800; }
 }
 /* On the dark room, the message and timer sit on white neumorphic pills, and names and the count turn light. */
 [data-screen="sort"] .hint-box, [data-screen="sort"] [data-slot="timer"] {
-  background: #fff; box-shadow: var(--raise); color: var(--text);
+  background: #fff; color: var(--text);
 }
+/* No glow on this screen: buttons and boxes get a plain dark drop shadow instead of the light neumorphic halo. */
+[data-screen="sort"] button, [data-screen="sort"] .hint-box, [data-screen="sort"] [data-slot="timer"] {
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.35);
+}
+[data-screen="sort"] button:active:not(:disabled) { box-shadow: 0 1px 3px rgba(0, 0, 0, 0.35); }
+[data-screen="sort"] .bin, [data-screen="sort"] .bin:active:not(:disabled) { box-shadow: none; } /* the bins are just their pictures */
 [data-screen="sort"] [data-slot="timer"] { flex: 0 1 auto; padding: 8px 18px; border-radius: 999px; }
 [data-screen="sort"] .item, [data-screen="sort"] .bin, [data-screen="sort"] .count {
   color: #fff; text-shadow: 0 1px 6px rgba(0, 0, 0, 0.6);
@@ -209,7 +215,7 @@ h2, h3 { font-weight: 800; }
   min-height: 0; border-radius: 28px; font-size: 1.1rem; font-weight: 700;
   background: none; box-shadow: none; /* the tool sits straight on the page, with no card around it */
 }
-.item img { max-height: min(260px, 27dvh); max-width: 70%; object-fit: contain; }
+.item img { max-height: calc(min(260px, 27dvh) * var(--scale, 1)); max-width: 70%; object-fit: contain; }
 .item.wrong { background: rgba(243, 201, 210, 0.7); outline: 3px solid var(--wrong); }
 .item.moved { visibility: hidden; }
 [data-slot="bins"] { display: grid; grid-template-columns: 1.2fr 1fr; gap: 10px; margin-bottom: 14%; } /* the bins stand on the counter in the room picture */
