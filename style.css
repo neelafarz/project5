@@ -197,17 +197,17 @@ h2, h3 { font-weight: 800; }
   min-height: 0; border-radius: 28px; font-size: 1.1rem; font-weight: 700;
   background: none; box-shadow: none; /* the tool sits straight on the page, with no card around it */
 }
-.item img { max-height: 260px; max-width: 70%; object-fit: contain; }
+.item img { max-height: min(260px, 27dvh); max-width: 70%; object-fit: contain; }
 .item.wrong { background: rgba(243, 201, 210, 0.7); outline: 3px solid var(--wrong); }
 .item.moved { visibility: hidden; }
-[data-slot="bins"] { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+[data-slot="bins"] { display: grid; grid-template-columns: 1.2fr 1fr; gap: 10px; margin-bottom: 14%; } /* the bins stand on the counter in the room picture */
 .bin {
   display: flex; flex-direction: column; align-items: center; gap: 6px;
-  min-height: 120px; padding: 12px; border: 3px solid transparent; border-radius: 28px;
+  min-height: 120px; padding: 12px 4px; border: 3px solid transparent; border-radius: 28px; white-space: nowrap;
   background: none; box-shadow: none; color: var(--text); font-weight: 700; /* just the picture and its name */
 }
 .bin:active:not(:disabled) { box-shadow: none; }
-.bin img { height: 130px; width: 100%; object-fit: contain; } /* one slot size, so both labels line up */
+.bin img { height: min(190px, 21dvh); width: 100%; object-fit: contain; object-position: center bottom; } /* one slot size, standing on the counter, so both labels line up */
 .bin.correct { border-color: var(--accent); background: var(--accent-2); }
 .note { font-size: 0.8rem; opacity: 0.85; margin: 0; }
 
