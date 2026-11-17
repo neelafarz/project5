@@ -123,6 +123,7 @@ export class ProcedureView {
     hand.hidden = !src;
     if (src) hand.src = src;
     hand.classList.toggle('working', state === 'working');
+    hand.classList.toggle('drill', state === 'working' && variant === 'drill'); // the drill hand has its own height
   }
 
   #setScene(scene) {
