@@ -105,7 +105,7 @@ h2, h3 { font-weight: 800; }
   --patient-height: 142cqh;
   --patient-top: -10cqh; /* the patient is taller than the scene (the bib is cropped); lifted so the mouth stays at mid-height */
   --hand-width: 62cqh;
-  --hand-left: 2cqh; /* the hand starts a little in from the left edge */
+  --hand-offset: 59cqh; /* the hand's left edge sits this far left of the scene's center, which is where the patient's mouth is, so the fingertip lands in the mouth at any scene width */
   --hand-top: 62%; /* the open hand waits below the mouth, so the mouth stays visible */
   --working-top: 46%; /* the working hand moves up so its tip ends inside the mouth */
   overflow: hidden;
@@ -116,7 +116,7 @@ h2, h3 { font-weight: 800; }
   height: var(--patient-height); width: auto;
 }
 .hand {
-  position: absolute; left: var(--hand-left); top: var(--hand-top);
+  position: absolute; left: calc(50% - var(--hand-offset)); top: var(--hand-top);
   width: var(--hand-width); height: auto;
 }
 .hand.working { top: var(--working-top); }
