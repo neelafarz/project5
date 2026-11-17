@@ -68,6 +68,7 @@ Approved:
 - At 0 the correct tool is hinted and play moves on.
 - Each step has an optional **pick** (timed) and a **result** (the scene change, an optional message, and an optional duration). A step with no pick, such as the dentist removing the matrix, just plays its result. A result marked as a wait (for example, curing, about 3 seconds) is not timed against the player and cannot be skipped. Only steps with a pick are counted for scoring.
 - Popups appear on steps that vary by dentist.
+- On startup the app fetches every image named in the mode data files and the shared cast in the background, so tools, bins, and patients show instantly when first needed.
 - The tray shows the tool list of the current procedure, as the tools lying on a realistic instrument tray with no visible words, because real trays have no captions (Developer). Tool names stay available to screen readers, and a missing image falls back to its name as a stand-in. The tray is the Canva tray image turned horizontal, sliced into a stretchable frame so it can be nearly square (about 1.05 wide to tall) without distorting its rim. This gives phone thumbs larger tools and tap areas; the tray is the widest the screen allows and no taller than 48% of the window. Each tool's position on it (center, length, tilt) is data in the procedure file, so a new procedure arranges its own tray and any tool can be nudged without code. Tools without layout data fall back to a plain grid.
 
 Acceptance checks:

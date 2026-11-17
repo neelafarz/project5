@@ -35,6 +35,22 @@ async function loadJson(path) {
   return response.json();
 }
 
+// Fetches every image a mode uses (any "image" field in its data, plus the shared cast) ahead of time,
+// so tools, bins and patients appear instantly instead of loading the first time they are shown.
+const preloaded = []; // kept so the browser does not drop the downloaded images
+function preloadImages(node) {
+  if (Array.isArray(node)) node.forEach(preloadImages);
+  else if (node && typeof node === 'object') {
+    for (const [key, value] of Object.entries(node)) {
+      if (key === 'image' && typeof value === 'string') {
+        const img = new Image();
+        img.src = value;
+        preloaded.push(img);
+      } else preloadImages(value);
+    }
+  }
+}
+
 // ---- Saved best scores (localStorage). The game works if storage is blocked. ----
 const bestKey = (modeId) => `going-chairside:best:${modeId}`;
 function readBest(modeId) {
@@ -218,6 +234,8 @@ async function init() {
   setMusic(app.music);
   buildGuide().catch(() => {}); // the guide is optional; the game does not depend on it
   show('opening');
+  preloadImages(app.cast);
+  for (const mode of app.modes.filter(isPlayable)) loadJson(mode.data).then(preloadImages).catch(() => {});
 }
 // A hidden tab stops animation frames but not the clock, so pause the round when the player leaves
 // the tab; otherwise the countdown would run out unseen.
