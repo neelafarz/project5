@@ -28,6 +28,7 @@
     },
     "sources": "Based on the CDC's dental infection control guidance, Sterilization and Disinfection (cdc.gov/dental-infection-control). Draft: not yet reviewed by the Developer or a professional."
   },
+  "backdrop": "assets/backgrounds/sterile-room.png",
   "banner": "Sort each tool into the correct place",
   "prompt": "They've already all been wiped down. What's the next step?",
   "bins": [

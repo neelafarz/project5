@@ -21,6 +21,8 @@ export class SortView {
 
   start() {
     this.slot('banner').textContent = this.data.banner;
+    // The room behind the game (an optional picture named in the data file).
+    if (this.data.backdrop) this.screen.style.backgroundImage = `url("${this.data.backdrop}")`;
     this.#buildBins();
     this.run.start(performance.now());
     this.#showItem();
