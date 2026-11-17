@@ -187,17 +187,18 @@ h2, h3 { font-weight: 800; }
 .item {
   flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px;
   min-height: 0; border-radius: 28px; font-size: 1.1rem; font-weight: 700;
-  background: var(--raised); box-shadow: var(--raise);
+  background: none; box-shadow: none; /* the tool sits straight on the page, with no card around it */
 }
 .item img { max-height: 260px; max-width: 70%; object-fit: contain; }
-.item.wrong { background: #f3c9d2; outline: 3px solid var(--wrong); }
+.item.wrong { background: rgba(243, 201, 210, 0.7); outline: 3px solid var(--wrong); }
 .item.moved { visibility: hidden; }
 [data-slot="bins"] { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
 .bin {
   display: flex; flex-direction: column; align-items: center; gap: 6px;
   min-height: 120px; padding: 12px; border: 3px solid transparent; border-radius: 28px;
-  background: var(--icy); color: var(--text); font-weight: 700;
+  background: none; box-shadow: none; color: var(--text); font-weight: 700; /* just the picture and its name */
 }
+.bin:active:not(:disabled) { box-shadow: none; }
 .bin img { max-height: 90px; object-fit: contain; }
 .bin.correct { border-color: var(--accent); background: var(--accent-2); }
 .note { font-size: 0.8rem; opacity: 0.85; margin: 0; }

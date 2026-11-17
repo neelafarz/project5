@@ -22,7 +22,7 @@
       "label": "Matrix system and wedges",
       "image": "assets/tools/matrix-wedges.png",
       "layout": {
-        "x": 57.1,
+        "x": 59.9,
         "y": 34,
         "h": 46,
         "rot": -2
@@ -33,9 +33,9 @@
       "label": "Etchant syringe",
       "image": "assets/tools/etchant.png",
       "layout": {
-        "x": 40.2,
+        "x": 42.5,
         "y": 34,
-        "h": 50,
+        "h": 38,
         "rot": 0
       }
     },
@@ -44,9 +44,9 @@
       "label": "Bonding agent with microbrush",
       "image": "assets/tools/bonding.png",
       "layout": {
-        "x": 79.9,
+        "x": 82.1,
         "y": 34,
-        "h": 46,
+        "h": 36,
         "rot": 3
       }
     },
@@ -66,9 +66,9 @@
       "label": "Composite dispenser",
       "image": "assets/tools/composite-dispenser.png",
       "layout": {
-        "x": 22,
-        "y": 73,
-        "h": 30,
+        "x": 26,
+        "y": 77,
+        "h": 34,
         "rot": -3
       }
     },
@@ -77,7 +77,7 @@
       "label": "Composite placement instrument",
       "image": "assets/tools/placement-instrument.png",
       "layout": {
-        "x": 28.8,
+        "x": 30.4,
         "y": 34,
         "h": 50,
         "rot": 3
