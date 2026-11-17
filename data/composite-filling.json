@@ -22,7 +22,7 @@
       "label": "Matrix system and wedges",
       "image": "assets/tools/matrix-wedges.png",
       "layout": {
-        "x": 59.9,
+        "x": 50.2,
         "y": 34,
         "h": 46,
         "rot": -2
@@ -33,7 +33,7 @@
       "label": "Etchant syringe",
       "image": "assets/tools/etchant.png",
       "layout": {
-        "x": 42.5,
+        "x": 67.7,
         "y": 34,
         "h": 38,
         "rot": 0
@@ -44,7 +44,7 @@
       "label": "Bonding agent with microbrush",
       "image": "assets/tools/bonding.png",
       "layout": {
-        "x": 82.1,
+        "x": 82.2,
         "y": 34,
         "h": 36,
         "rot": 3
