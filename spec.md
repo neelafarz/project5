@@ -96,7 +96,7 @@ Approved:
 Provisional:
 - The sort uses the procedure formula: whole seconds left of 10, with full points in the first 2 seconds, scaled to 100 over the round. **(provisional)**
 - The count sits above the item, not at the top right, because the frame puts the pause button there. **(open)**
-- The hint box shows the prompt "They've already all been wiped down. What's the next step?" during play, and a per-item hint at 5 seconds. Per-item hints are not written yet, so a generic line shows. **(provisional)**
+- One message box, like the filling game, shows the prompt "Sort each tool into the correct place. They've already been wiped down." during play and a hint at 5 seconds. There are only two hints, one per bin, not one per tool: for tools that go in the ultrasonic cleaner, "Could soaking and vibration help clean the small spaces?"; for tools that go straight to heat sterilization, "Could soaking and vibration damage any part?" (Developer).
 - The instructions and footnote show on the intro screen, and the footnote also shows on the end screen. **(provisional)**
 - The tapped item flies into the chosen bin, and the end screen also shows the final correct count. **(provisional)**
 - After a wrong pick the game does not reveal the correct bin. **(open)**

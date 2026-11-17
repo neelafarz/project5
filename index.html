@@ -21,7 +21,7 @@
       data-slot="..."        filled by the app (modes, guide, credits, overall, score, stars, best, detail,
                              mode-title, instructions, intro-note, end-note) or by an engine view:
                              game: scene, hand, message, tray, timer, popup, pause
-                             sort: banner, message, count, item, bins, timer, pause
+                             sort: message, count, item, bins, timer, pause
   -->
   <main id="app">
 
@@ -115,7 +115,6 @@
         <p data-slot="timer"></p>
         <button data-action="pause" aria-label="Pause">&#10074;&#10074;</button>
       </header>
-      <p class="hint-box" data-slot="banner"></p>
       <p class="hint-box" data-slot="message" aria-live="polite"></p>
       <p class="count" data-slot="count"></p>
       <div class="item" data-slot="item"></div>

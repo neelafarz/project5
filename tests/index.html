@@ -156,6 +156,9 @@
     const right = (item) => ({ bin: item.bin, ms: 500 });
     const other = (item) => sort.bins.find((b) => b.id !== item.bin).id;
 
+    test('sort data: every bin has a hint to show at 5 seconds', () => {
+      for (const bin of sort.bins) eq(typeof sort.hints[bin.id] === 'string' && sort.hints[bin.id].length > 0, true);
+    });
     test('sort data: 2 bins, 6 ultrasonic and 4 heat items, each item has a valid bin', () => {
       eq(sort.bins.length, 2); eq(sort.items.length, 10);
       eq(sort.items.filter((i) => i.bin === 'ultrasonic').length, 6);

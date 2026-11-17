@@ -29,22 +29,25 @@
     "sources": "Based on the CDC's dental infection control guidance, Sterilization and Disinfection (cdc.gov/dental-infection-control). Draft: not yet reviewed by the Developer or a professional."
   },
   "backdrop": "assets/backgrounds/sterile-room.png",
-  "banner": "Sort each tool into the correct place",
-  "prompt": "They've already all been wiped down. What's the next step?",
+  "prompt": "Sort each tool into the correct place. They've already been wiped down.",
+  "hints": {
+    "ultrasonic": "Could soaking and vibration help clean the small spaces?",
+    "heat": "Could soaking and vibration damage any part?"
+  },
   "bins": [
     { "id": "ultrasonic", "label": "Ultrasonic cleaner", "image": "assets/bins/ultrasonic-cleaner.png" },
     { "id": "heat", "label": "Heat sterilization", "image": "assets/bins/heat-sterilization.png" }
   ],
   "items": [
-    { "id": "high-speed-handpiece", "label": "High-speed handpiece", "bin": "heat", "image": "assets/sort/high-speed-handpiece.png", "hint": "" },
-    { "id": "low-speed-handpiece", "label": "Low-speed handpiece", "bin": "heat", "image": "assets/sort/low-speed-handpiece.png", "hint": "" },
-    { "id": "prophy-angle", "label": "Prophy angle", "bin": "heat", "image": "assets/sort/prophy-angle.png", "hint": "" },
-    { "id": "ultrasonic-scaler", "label": "Ultrasonic scaler", "bin": "heat", "image": "assets/sort/ultrasonic-scaler.png", "hint": "" },
-    { "id": "bur-block", "label": "Bur block", "bin": "ultrasonic", "image": "assets/sort/bur-block.png", "hint": "" },
-    { "id": "elevator", "label": "Elevator", "bin": "ultrasonic", "image": "assets/sort/elevator.png", "hint": "" },
-    { "id": "dental-mirror", "label": "Dental mirror", "bin": "ultrasonic", "image": "assets/sort/dental-mirror.png", "hint": "" },
-    { "id": "extraction-forceps", "label": "Extraction forceps", "bin": "ultrasonic", "image": "assets/sort/extraction-forceps.png", "hint": "" },
-    { "id": "cotton-pliers", "label": "Cotton pliers", "bin": "ultrasonic", "image": "assets/sort/cotton-pliers.png", "hint": "" },
-    { "id": "explorer", "label": "Explorer", "bin": "ultrasonic", "image": "assets/sort/explorer.png", "hint": "" }
+    { "id": "high-speed-handpiece", "label": "High-speed handpiece", "bin": "heat", "image": "assets/sort/high-speed-handpiece.png" },
+    { "id": "low-speed-handpiece", "label": "Low-speed handpiece", "bin": "heat", "image": "assets/sort/low-speed-handpiece.png" },
+    { "id": "prophy-angle", "label": "Prophy angle", "bin": "heat", "image": "assets/sort/prophy-angle.png" },
+    { "id": "ultrasonic-scaler", "label": "Ultrasonic scaler", "bin": "heat", "image": "assets/sort/ultrasonic-scaler.png" },
+    { "id": "bur-block", "label": "Bur block", "bin": "ultrasonic", "image": "assets/sort/bur-block.png" },
+    { "id": "elevator", "label": "Elevator", "bin": "ultrasonic", "image": "assets/sort/elevator.png" },
+    { "id": "dental-mirror", "label": "Dental mirror", "bin": "ultrasonic", "image": "assets/sort/dental-mirror.png" },
+    { "id": "extraction-forceps", "label": "Extraction forceps", "bin": "ultrasonic", "image": "assets/sort/extraction-forceps.png" },
+    { "id": "cotton-pliers", "label": "Cotton pliers", "bin": "ultrasonic", "image": "assets/sort/cotton-pliers.png" },
+    { "id": "explorer", "label": "Explorer", "bin": "ultrasonic", "image": "assets/sort/explorer.png" }
   ]
 }

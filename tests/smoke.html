@@ -165,9 +165,8 @@
       && $('[data-screen="intro"] .disclaimer-box').textContent === app.disclaimer);
     $('[data-action="begin-game"]').click();
     const sortScreen = $('[data-screen="sort"]');
-    check('sort screen has two bins, the banner, the prompt and a 0/10 count',
+    check('sort screen has two bins, the prompt and a 0/10 count',
       visible('sort') && sortScreen.querySelectorAll('.bin').length === 2
-      && sortScreen.querySelector('[data-slot="banner"]').textContent === sort.banner
       && sortScreen.querySelector('[data-slot="message"]').textContent === sort.prompt
       && sortScreen.querySelector('[data-slot="count"]').textContent === '0/10');
     await wait(400);

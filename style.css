@@ -190,7 +190,19 @@ h2, h3 { font-weight: 800; }
 
 /* ---- Sort (hooks used by js/sortView.js) ---- */
 [data-screen="sort"] header { justify-content: space-between; }
-[data-screen="sort"] { background: center / cover no-repeat; } /* the room picture comes from the data file */
+/* The room picture comes from the data file (sortView sets --backdrop); a dark layer over it keeps the tools clear. */
+[data-screen="sort"] {
+  --backdrop-shade: rgba(35, 30, 55, 0.42);
+  background: linear-gradient(var(--backdrop-shade), var(--backdrop-shade)), var(--backdrop) center / cover no-repeat;
+}
+/* On the dark room, the message and timer sit on white neumorphic pills, and names and the count turn light. */
+[data-screen="sort"] .hint-box, [data-screen="sort"] [data-slot="timer"] {
+  background: #fff; box-shadow: var(--raise); color: var(--text);
+}
+[data-screen="sort"] [data-slot="timer"] { flex: 0 1 auto; padding: 8px 18px; border-radius: 999px; }
+[data-screen="sort"] .item, [data-screen="sort"] .bin, [data-screen="sort"] .count {
+  color: #fff; text-shadow: 0 1px 6px rgba(0, 0, 0, 0.6);
+}
 .count { margin: 0; text-align: right; font-weight: 700; }
 .item {
   flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px;

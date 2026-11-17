@@ -6,8 +6,6 @@ import { timeLabel } from './pickClock.js';
 import { flyTo } from './fly.js';
 import { play } from './sound.js';
 
-const GENERIC_HINT = 'Not sure? Think about how this tool is cleaned.';
-
 export class SortView {
   // `screen` is the <section data-screen="sort"> element; `onFinish(score, info)` is called at the end.
   constructor(screen, data, onFinish) {
@@ -20,9 +18,8 @@ export class SortView {
   }
 
   start() {
-    this.slot('banner').textContent = this.data.banner;
     // The room behind the game (an optional picture named in the data file).
-    if (this.data.backdrop) this.screen.style.backgroundImage = `url("${this.data.backdrop}")`;
+    if (this.data.backdrop) this.screen.style.setProperty('--backdrop', `url("${this.data.backdrop}")`);
     this.#buildBins();
     this.run.start(performance.now());
     this.#showItem();
@@ -123,7 +120,7 @@ export class SortView {
   #loop = () => {
     const now = performance.now();
     const event = this.run.tick(now);
-    if (event === 'hint') this.#setMessage(this.run.item.hint || GENERIC_HINT);
+    if (event === 'hint') this.#setMessage(this.data.hints[this.run.item.bin]); // one hint per bin, not per tool
     if (event === 'timeout') this.#onTimeout();
     this.#updateTimer(now);
     if (this.run.canAdvance(now)) {
