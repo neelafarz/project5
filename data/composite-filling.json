@@ -3,6 +3,18 @@
   "title": "Composite filling",
   "engine": "procedure",
   "status": "DRAFT, unreviewed. Steps from the Developer's own knowledge; not yet checked by a reviewer or a published source.",
+  "guide": {
+    "about": [
+      "A composite filling removes decay and repairs the tooth. It can be done on any tooth, and the surface involved gives it its name: mesial (M), occlusal (O), distal (D), lingual (L), buccal (B), and on front teeth, facial or labial (V). A filling can cover more than one surface, such as an MOD."
+    ],
+    "before": [
+      "The dentist numbs the patient, removes the decayed part of the tooth with a drill, and cleans the area out. Then the filling procedure begins."
+    ],
+    "stepsIntro": "The filling procedure, in order:",
+    "after": [
+      "After the filling is placed and cured, the dentist polishes it and smooths it out if needed. Then the procedure is complete."
+    ]
+  },
   "startScene": "tooth-prepared-isolated",
   "tray": [
     {

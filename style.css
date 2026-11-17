@@ -106,7 +106,7 @@ h2, h3 { font-weight: 800; }
   --hand-width: 62cqh;
   --hand-left: 2cqh; /* the hand starts a little in from the left edge */
   --hand-top: 62%; /* the open hand waits below the mouth, so the mouth stays visible */
-  --working-top: 55%; /* the working hand moves up to the mouth */
+  --working-top: 46%; /* the working hand moves up so its tip ends inside the mouth */
   overflow: hidden;
   border-radius: 28px; background: var(--icy); box-shadow: var(--press); /* a soft icy-blue window onto the room */
 }

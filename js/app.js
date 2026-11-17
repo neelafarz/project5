@@ -112,7 +112,17 @@ async function buildGuide() {
       item.textContent = step.pick ? label(step.pick) : step.result.message;
       list.append(item);
     }
-    holder.append(heading, list);
+    // Optional background text from the data file: what the procedure is, what comes before and after.
+    const guide = data.guide ?? {};
+    const paragraphs = (texts = []) => texts.map((text) => {
+      const p = document.createElement('p');
+      p.textContent = text;
+      return p;
+    });
+    const stepsIntro = document.createElement('p');
+    stepsIntro.textContent = guide.stepsIntro ?? '';
+    holder.append(heading, ...paragraphs(guide.about), ...paragraphs(guide.before),
+      ...(guide.stepsIntro ? [stepsIntro] : []), list, ...paragraphs(guide.after));
   }
 }
 
