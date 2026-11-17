@@ -10,8 +10,8 @@
       "Sterilization is how used instruments are made safe for the next patient. Instruments are cleaned first, then sterilized with heat. In this mode you sort each tool into the right place: the ultrasonic cleaner or heat sterilization (the autoclave)."
     ],
     "binNotes": {
-      "ultrasonic": "The ultrasonic cleaner uses high-frequency sound waves in a liquid bath to shake debris loose. It cleans but does not sterilize, so these hand instruments are still dried, inspected, packaged, and heat sterilized afterward.",
-      "heat": "Heat sterilization uses an autoclave, which sterilizes with steam under pressure. CDC guidance says handpieces, low-speed motors, reusable prophy angles, and their attachments should always be heat sterilized between patients, not only disinfected. Clean them first and follow the manufacturer's instructions."
+      "ultrasonic": "The ultrasonic cleaner uses high-frequency sound waves in a liquid bath to shake debris loose. It cleans but does not sterilize, so these instruments are still dried, inspected, packaged, and heat sterilized afterward.",
+      "heat": "Heat sterilization uses an autoclave, which sterilizes with steam under pressure. CDC guidance says handpieces, low-speed motors, reusable prophy angles, and their attachments should always be heat sterilized between patients, not only disinfected. In this game the ultrasonic scaler goes here too. Clean each item first and follow the manufacturer's instructions."
     },
     "technique": {
       "heading": "Proper sterile technique",
@@ -35,15 +35,15 @@
     { "id": "heat", "label": "Heat sterilization", "image": "assets/bins/heat-sterilization.png" }
   ],
   "items": [
-    { "id": "mouth-mirror", "label": "Mouth mirror", "bin": "ultrasonic", "image": "assets/sort/mouth-mirror.png", "hint": "" },
-    { "id": "explorer", "label": "Explorer", "bin": "ultrasonic", "image": "assets/sort/explorer.png", "hint": "" },
-    { "id": "hand-scaler", "label": "Hand scaler", "bin": "ultrasonic", "image": "assets/sort/hand-scaler.png", "hint": "" },
-    { "id": "cotton-pliers", "label": "Cotton pliers", "bin": "ultrasonic", "image": "assets/sort/cotton-pliers.png", "hint": "" },
-    { "id": "extraction-forceps", "label": "Extraction forceps", "bin": "ultrasonic", "image": "assets/sort/extraction-forceps.png", "hint": "" },
-    { "id": "elevator", "label": "Elevator", "bin": "ultrasonic", "image": "assets/sort/elevator.png", "hint": "" },
     { "id": "high-speed-handpiece", "label": "High-speed handpiece", "bin": "heat", "image": "assets/sort/high-speed-handpiece.png", "hint": "" },
-    { "id": "low-speed-motor", "label": "Low-speed motor", "bin": "heat", "image": "assets/sort/low-speed-motor.png", "hint": "" },
-    { "id": "prophy-angle", "label": "Reusable metal prophy angle", "bin": "heat", "image": "assets/sort/prophy-angle.png", "hint": "" },
-    { "id": "contra-angle", "label": "Contra-angle attachment", "bin": "heat", "image": "assets/sort/contra-angle.png", "hint": "" }
+    { "id": "low-speed-handpiece", "label": "Low-speed handpiece", "bin": "heat", "image": "assets/sort/low-speed-handpiece.png", "hint": "" },
+    { "id": "prophy-angle", "label": "Prophy angle", "bin": "heat", "image": "assets/sort/prophy-angle.png", "hint": "" },
+    { "id": "ultrasonic-scaler", "label": "Ultrasonic scaler", "bin": "heat", "image": "assets/sort/ultrasonic-scaler.png", "hint": "" },
+    { "id": "bur-block", "label": "Bur block", "bin": "ultrasonic", "image": "assets/sort/bur-block.png", "hint": "" },
+    { "id": "elevator", "label": "Elevator", "bin": "ultrasonic", "image": "assets/sort/elevator.png", "hint": "" },
+    { "id": "dental-mirror", "label": "Dental mirror", "bin": "ultrasonic", "image": "assets/sort/dental-mirror.png", "hint": "" },
+    { "id": "extraction-forceps", "label": "Extraction forceps", "bin": "ultrasonic", "image": "assets/sort/extraction-forceps.png", "hint": "" },
+    { "id": "cotton-pliers", "label": "Cotton pliers", "bin": "ultrasonic", "image": "assets/sort/cotton-pliers.png", "hint": "" },
+    { "id": "explorer", "label": "Explorer", "bin": "ultrasonic", "image": "assets/sort/explorer.png", "hint": "" }
   ]
 }

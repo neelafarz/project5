@@ -7,7 +7,8 @@
   --raised: #e9deed;      /* soft lavender cards and buttons */
   --accent: #c6a3ca;      /* dusty mauve: primary buttons, slider */
   --accent-2: #edbeed;    /* pastel pink */
-  --icy: #d5edf3;         /* icy blue: scene and sort bins */
+  --icy: #d5edf3;         /* icy blue: sort bins */
+  --scene-bg: #7fb0d1;    /* a deeper blue for the scene, so the pale glove stands out */
   --text: #49364f;        /* deep plum */
   --star: #f2b44e;
   --wrong: #d9546e;
@@ -108,7 +109,7 @@ h2, h3 { font-weight: 800; }
   --hand-top: 62%; /* the open hand waits below the mouth, so the mouth stays visible */
   --working-top: 46%; /* the working hand moves up so its tip ends inside the mouth */
   overflow: hidden;
-  border-radius: 28px; background: var(--icy); box-shadow: var(--press); /* a soft icy-blue window onto the room */
+  border-radius: 28px; background: var(--scene-bg); box-shadow: var(--press); /* a blue window onto the room */
 }
 .patient {
   position: absolute; left: 50%; top: var(--patient-top); translate: -50% 0;
@@ -143,15 +144,20 @@ h2, h3 { font-weight: 800; }
   width: 100%; height: 100%; object-fit: contain;
   filter: drop-shadow(2px 5px 3px rgba(0, 60, 70, 0.4)); /* the tool rests on the tray */
 }
-/* A tray with layout data: sized like the tray image so it is never stretched, tools placed freely. */
+/* A tray with layout data: a stretchable frame (the tray image sliced into corners, rims and a center, so the
+   tray can be any shape without distorting its rim) with tools placed freely on it by % of its size. */
 [data-slot="tray"].free {
-  display: block; position: relative; aspect-ratio: 546 / 389; padding: 0;
-  /* never taller than 40% of the window, so a short window keeps room for the scene */
-  width: min(100%, calc(40dvh * 546 / 389)); align-self: center;
+  display: block; position: relative; aspect-ratio: 1.05; padding: 0; background: none;
+  /* never taller than 48% of the window, so a short window keeps room for the scene */
+  width: min(100%, calc(48dvh * 1.05)); align-self: center;
+}
+[data-slot="tray"].free::before {
+  content: ''; position: absolute; inset: 0; box-sizing: border-box; pointer-events: none;
+  border: 36px solid transparent; border-image: url("assets/tray/tray-landscape.png") 70 fill / 36px stretch;
 }
 .tool.positioned { position: absolute; translate: -50% -50%; width: auto; padding: 0; }
 .tool.positioned img { height: 100%; width: auto; }
-.tool.positioned::after { content: ''; position: absolute; inset: -6px; } /* a larger tap target */
+.tool.positioned::after { content: ''; position: absolute; inset: -8px; } /* a larger tap target, wider than the thin tools */
 .tool:active:not(:disabled) { box-shadow: none; transform: none; }
 .tool:active:not(:disabled) img { transform: scale(0.95); }
 .tool:disabled { opacity: 0.85; }

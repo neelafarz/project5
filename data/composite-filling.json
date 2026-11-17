@@ -22,9 +22,9 @@
       "label": "Matrix system and wedges",
       "image": "assets/tools/matrix-wedges.png",
       "layout": {
-        "x": 40,
-        "y": 47,
-        "h": 54,
+        "x": 57.1,
+        "y": 34,
+        "h": 46,
         "rot": -2
       }
     },
@@ -33,9 +33,9 @@
       "label": "Etchant syringe",
       "image": "assets/tools/etchant.png",
       "layout": {
-        "x": 53,
-        "y": 41,
-        "h": 36,
+        "x": 40.2,
+        "y": 34,
+        "h": 50,
         "rot": 0
       }
     },
@@ -44,9 +44,9 @@
       "label": "Bonding agent with microbrush",
       "image": "assets/tools/bonding.png",
       "layout": {
-        "x": 64,
-        "y": 41,
-        "h": 34,
+        "x": 79.9,
+        "y": 34,
+        "h": 46,
         "rot": 3
       }
     },
@@ -55,9 +55,9 @@
       "label": "Curing light",
       "image": "assets/tools/curing-light.png",
       "layout": {
-        "x": 15,
-        "y": 50,
-        "h": 68,
+        "x": 15.6,
+        "y": 34,
+        "h": 50,
         "rot": -3
       }
     },
@@ -66,9 +66,9 @@
       "label": "Composite dispenser",
       "image": "assets/tools/composite-dispenser.png",
       "layout": {
-        "x": 79,
-        "y": 41,
-        "h": 36,
+        "x": 22,
+        "y": 73,
+        "h": 30,
         "rot": -3
       }
     },
@@ -77,9 +77,9 @@
       "label": "Composite placement instrument",
       "image": "assets/tools/placement-instrument.png",
       "layout": {
-        "x": 26,
-        "y": 52,
-        "h": 56,
+        "x": 28.8,
+        "y": 34,
+        "h": 50,
         "rot": 3
       }
     },
@@ -88,9 +88,9 @@
       "label": "Floss",
       "image": "assets/tools/floss.png",
       "layout": {
-        "x": 82,
-        "y": 75,
-        "h": 24,
+        "x": 50,
+        "y": 73,
+        "h": 28,
         "rot": 4
       }
     },
@@ -99,9 +99,9 @@
       "label": "Articulating paper",
       "image": "assets/tools/articulating-paper.png",
       "layout": {
-        "x": 58,
-        "y": 77,
-        "h": 34,
+        "x": 76,
+        "y": 73,
+        "h": 30,
         "rot": 90
       }
     }

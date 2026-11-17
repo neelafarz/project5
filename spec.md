@@ -68,7 +68,7 @@ Approved:
 - At 0 the correct tool is hinted and play moves on.
 - Each step has an optional **pick** (timed) and a **result** (the scene change, an optional message, and an optional duration). A step with no pick, such as the dentist removing the matrix, just plays its result. A result marked as a wait (for example, curing, about 3 seconds) is not timed against the player and cannot be skipped. Only steps with a pick are counted for scoring.
 - Popups appear on steps that vary by dentist.
-- The tray shows the tool list of the current procedure, as the tools lying on a realistic instrument tray with no visible words, because real trays have no captions (Developer). Tool names stay available to screen readers, and a missing image falls back to its name as a stand-in. The tray is the Canva tray image turned horizontal, and each tool's position on it (center, length, tilt) is data in the procedure file, so a new procedure arranges its own tray and any tool can be nudged without code. Tools without layout data fall back to a plain grid.
+- The tray shows the tool list of the current procedure, as the tools lying on a realistic instrument tray with no visible words, because real trays have no captions (Developer). Tool names stay available to screen readers, and a missing image falls back to its name as a stand-in. The tray is the Canva tray image turned horizontal, sliced into a stretchable frame so it can be nearly square (about 1.05 wide to tall) without distorting its rim. This gives phone thumbs larger tools and tap areas; the tray is the widest the screen allows and no taller than 48% of the window. Each tool's position on it (center, length, tilt) is data in the procedure file, so a new procedure arranges its own tray and any tool can be nudged without code. Tools without layout data fall back to a plain grid.
 
 Acceptance checks:
 - The run 9, 10, 5, 10, 3, 6, 7, 8, 10, 6 totals 74. A timeout scores 0 for that step. A wrong pick followed by a correct one scores by the time of the correct pick.
@@ -84,7 +84,7 @@ Provisional:
 ### Sort engine (mode 6)
 
 Approved:
-- The game shows one tool at a time. The player taps one of two bins, the **ultrasonic cleaner** (6 items: mouth mirror, explorer, hand scaler, cotton pliers, extraction forceps, elevator) or **heat sterilization** (4 items: high-speed handpiece, low-speed motor, reusable metal prophy angle, contra-angle attachment). A round uses all 10 items in random order. Items are generic, never a brand.
+- The game shows one tool at a time. The player taps one of two bins, the **ultrasonic cleaner** (6 items: dental mirror, explorer, cotton pliers, extraction forceps, elevator, bur block) or **heat sterilization** (4 items: high-speed handpiece, low-speed handpiece, prophy angle, ultrasonic scaler). A round uses all 10 items in random order. Items are generic, never a brand.
 - Instructions: "Sort each used instrument into the step that fits it: the ultrasonic cleaner or heat sterilization (the autoclave). The tools have already been wiped down." Footnote: "*Both routes require proper cleaning before autoclaving. Follow manufacturer instructions."
 - Each item has 10 seconds. At 5 seconds a hint appears. At 10 seconds the game sorts the item into the correct bin for the player, and that item scores 0.
 - The score is based only on how much time the player takes to answer correctly, the same idea as the procedures. It is shown at the end of the round, after all items are done.
