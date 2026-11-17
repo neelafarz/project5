@@ -55,7 +55,9 @@
       $('[data-screen="opening"] .disclaimer').textContent === app.disclaimer);
 
     $('[data-goto="procedures"]').click();
-    check('Procedures guide lists the filling steps', visible('procedures') && $$('[data-slot="guide"] li').length === filling.steps.length);
+    check('Procedures guide lists the filling steps', visible('procedures') && $$('[data-slot="guide"] ol li').length === filling.steps.length);
+    check('Procedures guide explains both sterilization bins and the technique',
+      $$('[data-slot="guide"] h4').length === 3 && $$('[data-slot="guide"] ul li').length >= 10 + 3);
     $('[data-screen="procedures"] [data-goto="opening"]').click();
     $('[data-goto="settings"]').click();
     check('Settings opens', visible('settings'));

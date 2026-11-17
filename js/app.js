@@ -97,32 +97,49 @@ function buildSelection() {
   }
 }
 
-// Provisional: the Procedures button lists the steps of each built procedure in order.
+// Provisional: the Procedures button is the study guide. Each built mode shows its background text
+// (the optional "guide" block in its data file) around content drawn from the game data itself.
+const el = (tag, text) => {
+  const node = document.createElement(tag);
+  if (text !== undefined) node.textContent = text;
+  return node;
+};
+const paragraphs = (texts = []) => texts.map((text) => el('p', text));
+const listOf = (tag, texts) => {
+  const list = el(tag);
+  list.append(...texts.map((text) => el('li', text)));
+  return list;
+};
+
+// A procedure: what it is, what comes before, the steps in order, what comes after.
+function procedureGuide(data) {
+  const guide = data.guide ?? {};
+  const label = (id) => data.tray.find((t) => t.id === id).label;
+  const steps = data.steps.map((step) => (step.pick ? label(step.pick) : step.result.message));
+  return [...paragraphs(guide.about), ...paragraphs(guide.before),
+    ...(guide.stepsIntro ? [el('p', guide.stepsIntro)] : []), listOf('ol', steps), ...paragraphs(guide.after)];
+}
+
+// A sort mode: what it is, which tools go in each bin and why, then the technique points.
+function sortGuide(data) {
+  const guide = data.guide ?? {};
+  const parts = [...paragraphs(guide.about)];
+  for (const bin of data.bins) {
+    parts.push(el('h4', bin.label), ...paragraphs([guide.binNotes?.[bin.id]].filter(Boolean)),
+      listOf('ul', data.items.filter((item) => item.bin === bin.id).map((item) => item.label)));
+  }
+  if (guide.technique) parts.push(el('h4', guide.technique.heading), listOf('ul', guide.technique.points));
+  return parts;
+}
+
 async function buildGuide() {
   const holder = $('[data-slot="guide"]');
   holder.replaceChildren();
-  for (const mode of app.modes.filter((m) => isPlayable(m) && m.engine === 'procedure')) {
+  const builders = { procedure: procedureGuide, sort: sortGuide };
+  for (const mode of app.modes.filter((m) => isPlayable(m))) {
     const data = await loadJson(mode.data);
-    const heading = document.createElement('h3');
-    heading.textContent = mode.title;
-    const list = document.createElement('ol');
-    const label = (id) => data.tray.find((t) => t.id === id).label;
-    for (const step of data.steps) {
-      const item = document.createElement('li');
-      item.textContent = step.pick ? label(step.pick) : step.result.message;
-      list.append(item);
-    }
-    // Optional background text from the data file: what the procedure is, what comes before and after.
-    const guide = data.guide ?? {};
-    const paragraphs = (texts = []) => texts.map((text) => {
-      const p = document.createElement('p');
-      p.textContent = text;
-      return p;
-    });
-    const stepsIntro = document.createElement('p');
-    stepsIntro.textContent = guide.stepsIntro ?? '';
-    holder.append(heading, ...paragraphs(guide.about), ...paragraphs(guide.before),
-      ...(guide.stepsIntro ? [stepsIntro] : []), list, ...paragraphs(guide.after));
+    holder.append(el('h3', mode.title), ...builders[mode.engine](data),
+      ...(data.guide?.sources ? [el('p', data.guide.sources)] : []));
   }
 }
 

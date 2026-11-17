@@ -51,7 +51,7 @@ Screens follow the Developer's frames (opening, selection, game, sterilization s
 
 Provisional (not yet confirmed by the Developer):
 - **Play Again** returns to the intro screen of the same mode. **New Game** opens the selection screen. **Home** opens the opening screen.
-- **Procedures** button: lists each built procedure's steps in order (the in-game guide). **Settings:** "coming soon," with no content decided.
+- **Procedures** button: the study guide, with one section per built mode, written from each data file's `guide` block. A procedure shows what it is, what comes before, the steps in order (from the game data), and what comes after. Sterilization shows what the mode is, which tools go in each bin and why, and proper sterile technique. Guide text is DRAFT until the Developer reviews it. **Settings:** "coming soon," with no content decided.
 - **Overall Accuracy:** the average of the best score in each mode played so far, shown as "--" before any play.
 - **Stars:** 5, with one earned per 20% of the score, rounded down (80% gives 4 stars).
 - **Pause:** freezes the countdown and covers the screen, with Resume and Quit. It works only during a timed pick, never during a result, wait, or popup.
@@ -85,7 +85,7 @@ Provisional:
 
 Approved:
 - The game shows one tool at a time. The player taps one of two bins, the **ultrasonic cleaner** (6 items: mouth mirror, explorer, hand scaler, cotton pliers, extraction forceps, elevator) or **heat sterilization** (4 items: high-speed handpiece, low-speed motor, reusable metal prophy angle, contra-angle attachment). A round uses all 10 items in random order. Items are generic, never a brand.
-- Instructions: "Tools have been initially wiped down. Sort each into ultrasonic cleaning or heat sterilization." Footnote: "*Both routes require proper cleaning before autoclaving. Follow manufacturer instructions."
+- Instructions: "Sort each used instrument into the step that fits it: the ultrasonic cleaner or heat sterilization (the autoclave). The tools have already been wiped down." Footnote: "*Both routes require proper cleaning before autoclaving. Follow manufacturer instructions."
 - Each item has 10 seconds. At 5 seconds a hint appears. At 10 seconds the game sorts the item into the correct bin for the player, and that item scores 0.
 - The score is based only on how much time the player takes to answer correctly, the same idea as the procedures. It is shown at the end of the round, after all items are done.
 - A wrong pick is final: the item turns red, scores 0, and the round moves on. The player cannot pick again. (This differs from the procedures, where the player can retry.)

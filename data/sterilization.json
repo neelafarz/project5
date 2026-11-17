@@ -3,8 +3,31 @@
   "title": "Sterilization",
   "engine": "sort",
   "status": "DRAFT, unreviewed. Item routes from the Developer's own knowledge; not yet checked by a reviewer or a published source.",
-  "instructions": "Tools have been initially wiped down. Sort each into ultrasonic cleaning or heat sterilization.",
+  "instructions": "Sort each used instrument into the step that fits it: the ultrasonic cleaner or heat sterilization (the autoclave). The tools have already been wiped down.",
   "note": "*Both routes require proper cleaning before autoclaving. Follow manufacturer instructions.",
+  "guide": {
+    "about": [
+      "Sterilization is how used instruments are made safe for the next patient. Instruments are cleaned first, then sterilized with heat. In this mode you sort each tool into the right place: the ultrasonic cleaner or heat sterilization (the autoclave)."
+    ],
+    "binNotes": {
+      "ultrasonic": "The ultrasonic cleaner uses high-frequency sound waves in a liquid bath to shake debris loose. It cleans but does not sterilize, so these hand instruments are still dried, inspected, packaged, and heat sterilized afterward.",
+      "heat": "Heat sterilization uses an autoclave, which sterilizes with steam under pressure. CDC guidance says handpieces, low-speed motors, reusable prophy angles, and their attachments should always be heat sterilized between patients, not only disinfected. Clean them first and follow the manufacturer's instructions."
+    },
+    "technique": {
+      "heading": "Proper sterile technique",
+      "points": [
+        "Clean before you disinfect or sterilize. Cleaning always comes first, and automated cleaning such as an ultrasonic cleaner reduces debris and the worker's exposure to blood.",
+        "Wear appropriate PPE when handling and reprocessing contaminated instruments.",
+        "Contain and carry contaminated instruments by the office's policy, and keep the flow moving one way, from dirty to clean.",
+        "Dry and inspect instruments, then wrap, package, or place them in a container system before heat sterilizing.",
+        "Label each package with the sterilizer used, the cycle or load number, and the date, plus an expiration date when applicable.",
+        "Put a chemical indicator inside every package. If it does not change color, do not use the instruments.",
+        "Test the sterilizer with a spore test at least weekly, and keep sterilization and maintenance records.",
+        "Store sterile packages in closed cabinets. Check a package before use, and reprocess it if it is compromised."
+      ]
+    },
+    "sources": "Based on the CDC's dental infection control guidance, Sterilization and Disinfection (cdc.gov/dental-infection-control). Draft: not yet reviewed by the Developer or a professional."
+  },
   "banner": "Sort each tool into the correct place",
   "prompt": "They've already all been wiped down. What's the next step?",
   "bins": [

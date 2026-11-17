@@ -61,3 +61,9 @@ List every external source, code library, asset, and dataset you use, with its l
 - **Character and tool art** (`assets/tools/`, `assets/cast/`): AI-generated, as disclosed in the pitch. Tool, terms and prompts not yet recorded here; the Developer needs to add them.
 - **Font** (Nunito, loaded from Google Fonts in `index.html`): Google Fonts lists Nunito under the SIL Open Font License, which allows use in a web game; credited on the Settings screen. Not yet checked against the license text itself.
 - **Logo** (`assets/logo.png`): the Developer's finalized logo, made in Canva, with its white background removed and downsized for the web. `assets/tooth-mascot.png` is the tooth cut from that logo. The Canva usage-terms note under the first logo still applies and is unverified.
+
+**2026-11-16: Sterilization guide text.**
+- Drafted from the CDC's dental infection control guidance, [Sterilization and Disinfection](https://cdc.gov/dental-infection-control/hcp/summary/sterilization-disinfection.html) (read 2026-11-16): cleaning before disinfection or sterilization, automated cleaning such as an ultrasonic cleaner, drying and inspecting then packaging before heat sterilization, package labels, a chemical indicator in every package, weekly spore tests, closed storage, and handpieces, low-speed motors and reusable prophy angles always heat sterilized between patients.
+- The one-way dirty-to-clean flow point comes from a search summary of the CDC Module 7 slides, not a page I read; verify it.
+- The explanation of how ultrasonic cleaning works (sound waves loosening debris) is general knowledge, not from the CDC page.
+- Developer review still needed. The text is marked draft.
