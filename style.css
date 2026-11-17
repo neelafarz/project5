@@ -189,7 +189,7 @@ h2, h3 { font-weight: 800; }
   min-height: 0; border-radius: 28px; font-size: 1.1rem; font-weight: 700;
   background: var(--raised); box-shadow: var(--raise);
 }
-.item img { max-height: 120px; max-width: 60%; object-fit: contain; }
+.item img { max-height: 260px; max-width: 70%; object-fit: contain; }
 .item.wrong { background: #f3c9d2; outline: 3px solid var(--wrong); }
 .item.moved { visibility: hidden; }
 [data-slot="bins"] { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
